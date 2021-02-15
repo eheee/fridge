@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.heee.fridgetube.R
@@ -45,7 +46,7 @@ class HomeFragment : Fragment() {
         val adapter = VideoListAdapter(videoIds, this.lifecycle)
         adapter.itemClickListener = object : VideoListAdapter.OnItemClickListener{
             override fun onItemClicked(position: Int, videoId: String) {
-                Toast.makeText(requireContext(), "$videoId + 클릭", Toast.LENGTH_SHORT).show()
+                findNavController().navigate(R.id.action_home_to_detail)
             }
         }
         recyclerView.adapter = adapter

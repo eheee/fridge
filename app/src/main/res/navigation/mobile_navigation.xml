@@ -25,5 +25,13 @@
         android:name="com.heee.fridgetube.ui.memo.MemoFragment"
         android:label="@string/title_memo"
         tools:layout="@layout/fragment_memo" />
+    <fragment
+        android:id="@+id/navigation_detail"
+        android:name="com.heee.fridgetube.ui.detail.VideoDetailFragment"
+        tools:layout="@layout/fragment_video_detail"/>
+
+    <action
+        android:id="@+id/action_home_to_detail"
+        app:destination="@id/navigation_detail" />
 
 </navigation>

@@ -3,6 +3,8 @@ package com.heee.fridgetube.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.heee.fridgetube.R
@@ -48,6 +50,7 @@ class VideoListAdapter(private val videoList: Array<String>, private val lifecyc
                 override fun onReady(initializedYouTubePlayer: YouTubePlayer) { // Called when the player is ready to play video
                     youtubePlayer = initializedYouTubePlayer
                     youtubePlayer?.cueVideo(currentVideoId!!, 0F)
+                    youtubePlayer?.mute()
                 }
             })
         }
