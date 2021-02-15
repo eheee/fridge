@@ -46,7 +46,9 @@ class HomeFragment : Fragment() {
         val adapter = VideoListAdapter(videoIds, this.lifecycle)
         adapter.itemClickListener = object : VideoListAdapter.OnItemClickListener{
             override fun onItemClicked(position: Int, videoId: String) {
-                findNavController().navigate(R.id.action_home_to_detail)
+                val bundle = Bundle()
+                bundle.putString("videoId", videoId)
+                findNavController().navigate(R.id.action_home_to_detail, bundle)
             }
         }
         recyclerView.adapter = adapter
