@@ -10,10 +10,6 @@ import com.heee.fridgetube.R
 
 class FridgeFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = FridgeFragment()
-    }
-
     private lateinit var viewModel: FridgeViewModel
 
     override fun onCreateView(
