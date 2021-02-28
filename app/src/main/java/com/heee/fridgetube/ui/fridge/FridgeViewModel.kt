@@ -10,17 +10,17 @@ import com.heee.fridgetube.data.room.AppDatabase
 import kotlinx.coroutines.launch
 
 class FridgeViewModel(application: Application) : AndroidViewModel(application) {
-    var db: AppDatabase
     val context = application.applicationContext
+    var db: AppDatabase
+
     init {
         db = Room.databaseBuilder(context, AppDatabase::class.java, "fridge")
-            .createFromAsset("fridge")
             .build()
+    }
+
+    fun addCabinet(id: Long) {
         viewModelScope.launch {
-            val itemDao = db.itemDao()
-            val list = itemDao.fetchAllItems()
-            Log.e(TAG, list.toString())
-            Toast.makeText(context, list.toString(), Toast.LENGTH_SHORT).show()
+
         }
     }
 

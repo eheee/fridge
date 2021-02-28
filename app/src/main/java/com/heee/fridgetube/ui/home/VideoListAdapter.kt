@@ -3,8 +3,6 @@ package com.heee.fridgetube.ui.home
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.heee.fridgetube.R
@@ -18,7 +16,7 @@ class VideoListAdapter(private val videoList: Array<String>, private val lifecyc
     var itemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_item, parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_recipe, parent, false)
 
         val youtubePlayerView: YouTubePlayerView = itemView.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
         lifecycle.addObserver(youtubePlayerView)

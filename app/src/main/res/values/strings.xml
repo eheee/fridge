@@ -4,4 +4,6 @@
     <string name="title_library">보관함</string>
     <string name="title_fridge">냉장고</string>
     <string name="title_memo">장보기메모</string>
+
+    <string name="btn_item_select_complete">선택 완료</string>
 </resources>
