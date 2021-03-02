@@ -1,26 +1,30 @@
 package com.heee.fridgetube.ui.fridge
 
 import android.app.Application
-import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import androidx.room.Room
+import com.heee.fridgetube.data.Cabinet
 import com.heee.fridgetube.data.room.AppDatabase
 import kotlinx.coroutines.launch
 
 class FridgeViewModel(application: Application) : AndroidViewModel(application) {
     val context = application.applicationContext
-    var db: AppDatabase
+    var db: AppDatabase = AppDatabase.getAppDatabase(context)
 
-    init {
-        db = Room.databaseBuilder(context, AppDatabase::class.java, "fridge")
-            .build()
+    fun addCabinet(itemId: Long) {
+        val dao = db.cabinetDao()
+        viewModelScope.launch {
+            val cabinet = Cabinet(inputDate = System.currentTimeMillis(), itemId = itemId)
+            dao.addCabinet(cabinet)
+        }
     }
 
-    fun addCabinet(id: Long) {
+    fun fetchCabinetAndItem() {
+        val dao = db.cabinetAndItemDao()
         viewModelScope.launch {
-
+            val cabinetAndItem = dao.getCabinetAndItem()
+            Toast.makeText(context, cabinetAndItem.toString(), Toast.LENGTH_SHORT).show()
         }
     }
 

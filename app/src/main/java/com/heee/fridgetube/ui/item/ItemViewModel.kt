@@ -14,9 +14,7 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
 
     private val context = application.applicationContext
 
-    private val db: AppDatabase = Room.databaseBuilder(context, AppDatabase::class.java, "fridge")
-        .createFromAsset("fridge")
-        .build()
+    private val db: AppDatabase = AppDatabase.getAppDatabase(context)
 
     init {
         val dao = db.itemDao()

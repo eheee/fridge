@@ -23,7 +23,6 @@ class ItemsAdapter: RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {
         holder.binding.root.setOnClickListener {
             onItemClickListener?.setItemClickListenr(list[position])
         }
-
     }
 
     override fun getItemCount() = list.size

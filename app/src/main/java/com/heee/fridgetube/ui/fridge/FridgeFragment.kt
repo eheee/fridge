@@ -40,5 +40,7 @@ class FridgeFragment : Fragment() {
             val id = requireArguments().get("id") as Long?
             id?.let { viewModel.addCabinet(it)}
         }
+
+        viewModel.fetchCabinetAndItem()
     }
 }
