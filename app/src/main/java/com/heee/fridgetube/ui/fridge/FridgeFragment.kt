@@ -8,7 +8,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.heee.fridgetube.R
 import com.heee.fridgetube.databinding.FragmentFridgeBinding
 
@@ -39,8 +42,16 @@ class FridgeFragment : Fragment() {
         if(arguments != null) {
             val id = requireArguments().get("id") as Long?
             id?.let { viewModel.addCabinet(it)}
+            viewModel.fetchCabinetAndItem()
         }
 
-        viewModel.fetchCabinetAndItem()
+        binding.rvCabinets.layoutManager = LinearLayoutManager(context)
+        val adapter = FridgeAdapter()
+        binding.rvCabinets.adapter = adapter
+
+        viewModel.cabinet.observe(viewLifecycleOwner, Observer {
+            adapter.setList(it)
+        })
+
     }
 }
