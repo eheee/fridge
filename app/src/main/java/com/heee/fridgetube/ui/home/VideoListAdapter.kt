@@ -1,15 +1,13 @@
 package com.heee.fridgetube.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
-import com.heee.fridgetube.R
 import com.heee.fridgetube.data.Recipe
+import com.heee.fridgetube.databinding.RecyclerViewRecipeBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class VideoListAdapter(private val lifecycle: Lifecycle) :
     RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
@@ -18,20 +16,20 @@ class VideoListAdapter(private val lifecycle: Lifecycle) :
     var itemClickListener: OnItemClickListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.recycler_view_recipe, parent, false)
+        val binding =
+            RecyclerViewRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        lifecycle.addObserver(binding.youtubePlayerView)
 
-        val youtubePlayerView: YouTubePlayerView = itemView.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
-        lifecycle.addObserver(youtubePlayerView)
-
-        return ViewHolder(itemView)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.itemView.setOnClickListener {
-            println("$position 클릭")
+        holder.binding.root.setOnClickListener {
             itemClickListener?.onItemClicked(position, recipeList[position].videoId)
         }
         holder.readyVideo(recipeList[position].videoId)
+        //FIXME The title on video screen was changed instead of this textView.
+        holder.binding.videoTitle.text = recipeList[position].name
     }
 
     override fun getItemCount(): Int = recipeList.size
@@ -45,13 +43,14 @@ class VideoListAdapter(private val lifecycle: Lifecycle) :
         fun onItemClicked(position: Int, videoId: String)
     }
 
-    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class ViewHolder(val binding: RecyclerViewRecipeBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         private var youtubePlayer: YouTubePlayer? = null
         private var currentVideoId: String? = null
 
         init {
-            val youtubePlayerView: YouTubePlayerView = itemView.findViewById<YouTubePlayerView>(R.id.youtube_player_view)
-            youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
+            binding.youtubePlayerView.addYouTubePlayerListener(object :
+                AbstractYouTubePlayerListener() {
                 override fun onReady(initializedYouTubePlayer: YouTubePlayer) { // Called when the player is ready to play video
                     youtubePlayer = initializedYouTubePlayer
                     youtubePlayer?.cueVideo(currentVideoId!!, 0F)

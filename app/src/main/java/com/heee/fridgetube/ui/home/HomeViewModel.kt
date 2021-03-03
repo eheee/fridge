@@ -14,7 +14,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
     val recipes: LiveData<List<Recipe>>
         get() = _recipes
 
-    val db: AppDatabase = AppDatabase.getAppDatabase(context)
+    private val db: AppDatabase = AppDatabase.getAppDatabase(context)
 
     fun getRecipes() {
         val itemRecipeCrossDao = db.itemRecipeCrossDao()
