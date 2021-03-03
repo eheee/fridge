@@ -24,7 +24,9 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             val cabinetAndItems = cabinetAndItemDao.getCabinetAndItem()
             val itemsInFridge = mutableListOf<Long>()
             for (cabinetAndItem in cabinetAndItems) {
-                itemsInFridge.add(cabinetAndItem.item.id)
+                if(cabinetAndItem.item.isSpecial){
+                    itemsInFridge.add(cabinetAndItem.item.id)
+                }
             }
 
             val itemWithRecipes = itemRecipeCrossDao.getItemWithRecipes(itemsInFridge)
