@@ -1,13 +1,26 @@
 package com.heee.fridgetube.ui.home
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import android.app.Application
+import androidx.lifecycle.*
+import com.heee.fridgetube.data.Recipe
+import com.heee.fridgetube.data.dao.ItemRecipeCrossDao
+import com.heee.fridgetube.data.room.AppDatabase
+import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(application: Application) : AndroidViewModel(application) {
+    private val context = application.applicationContext
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _recipes = MutableLiveData<List<Recipe>>()
+    val recipes: LiveData<List<Recipe>>
+        get() = _recipes
+
+    val db: AppDatabase = AppDatabase.getAppDatabase(context)
+
+    fun getRecipes() {
+        val itemRecipeCrossDao = db.itemRecipeCrossDao()
+        viewModelScope.launch {
+            val itemWithRecipes = itemRecipeCrossDao.getItemWithRecipes()
+            _recipes.value = itemWithRecipes[0].recipes
+        }
     }
-    val text: LiveData<String> = _text
 }

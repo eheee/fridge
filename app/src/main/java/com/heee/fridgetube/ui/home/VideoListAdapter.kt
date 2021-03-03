@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.Recipe
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
-class VideoListAdapter(private val videoList: Array<String>, private val lifecycle: Lifecycle) :
+class VideoListAdapter(private val lifecycle: Lifecycle) :
     RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
+    private var recipeList = listOf<Recipe>()
 
     var itemClickListener: OnItemClickListener? = null
 
@@ -27,12 +29,17 @@ class VideoListAdapter(private val videoList: Array<String>, private val lifecyc
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.itemView.setOnClickListener {
             println("$position 클릭")
-            itemClickListener?.onItemClicked(position, videoList[position])
+            itemClickListener?.onItemClicked(position, recipeList[position].videoId)
         }
-        holder.readyVideo(videoList[position])
+        holder.readyVideo(recipeList[position].videoId)
     }
 
-    override fun getItemCount(): Int = videoList.size
+    override fun getItemCount(): Int = recipeList.size
+
+    fun setRecipes(recipes: List<Recipe>) {
+        recipeList = recipes
+        notifyDataSetChanged()
+    }
 
     interface OnItemClickListener {
         fun onItemClicked(position: Int, videoId: String)

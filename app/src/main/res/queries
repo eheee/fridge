@@ -32,3 +32,20 @@ INSERT INTO Item (name, category, isSpecial) VALUES ('피망', 2, false);
 INSERT INTO Item (name, category, isSpecial) VALUES ('파프리카', 2, false);
 INSERT INTO Item (name, category, isSpecial) VALUES ('콩', 2, false);
 INSERT INTO Item (name, category, isSpecial) VALUES ('병아리콩', 2, false);
+
+
+
+// For Item, Recipe Mapping
+
+INSERT INTO Item (name, category ,isSpecial) VALUES ('돼지고기', 1, true);
+INSERT INTO Item (name, category, isSpecial) VALUES ('닭고기', 1, true);
+INSERT INTO Item (name, category, isSpecial) VALUES ('훈제오리', 1, true);
+INSERT INTO Item (name, category, isSpecial) VALUES ('계란', 1, true);
+INSERT INTO Item (name, category, isSpecial) VALUES ('닭가슴살', 1, true);
+INSERT INTO Item (name, category, isSpecial) VALUES ('삼겹살', 1, true);
+
+INSERT INTO Recipe (videoId, name) VALUES ('EQahweVvZcc', '돼지고기 숙주 볶음');
+INSERT INTO Recipe (videoId, name) VALUES ('KJ5kEfaayKo', '돼지고기 김치찜');
+
+INSERT INTO ItemRecipeCrossRef (id, videoId) VALUES (1, 'EQahweVvZcc')
+INSERT INTO ItemRecipeCrossRef (id, videoId) VALUES (1, 'KJ5kEfaayKo')
