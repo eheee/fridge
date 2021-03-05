@@ -29,14 +29,13 @@ class HomeFragment : Fragment() {
         recyclerView.setHasFixedSize(true)  // Let RecyclerView know the layout of RecyclerView has always same size.
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val adapter = VideoListAdapter(this.lifecycle)
-        adapter.itemClickListener = object : VideoListAdapter.OnItemClickListener{
-            override fun onItemClicked(position: Int, videoId: String) {
+        val adapter = VideoListAdapter(this.lifecycle, itemClickListener = object : VideoListAdapter.OnItemClickListener{
+            override fun onItemClicked(videoId: String) {
                 val bundle = Bundle()
                 bundle.putString("videoId", videoId)
                 findNavController().navigate(R.id.action_home_to_detail, bundle)
             }
-        }
+        })
         recyclerView.adapter = adapter
 
         viewModel.recipes.observe(viewLifecycleOwner, Observer {
@@ -47,10 +46,5 @@ class HomeFragment : Fragment() {
         viewModel.getRecipes()
 
         return root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        Toast.makeText(requireContext(), "뷰로딩", Toast.LENGTH_SHORT).show()
     }
 }
