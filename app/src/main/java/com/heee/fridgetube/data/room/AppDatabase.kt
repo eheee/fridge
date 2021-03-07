@@ -6,14 +6,8 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.heee.fridgetube.data.Cabinet
-import com.heee.fridgetube.data.Item
-import com.heee.fridgetube.data.ItemRecipeCrossRef
-import com.heee.fridgetube.data.Recipe
-import com.heee.fridgetube.data.dao.CabinetAndItemDao
-import com.heee.fridgetube.data.dao.CabinetDao
-import com.heee.fridgetube.data.dao.ItemDao
-import com.heee.fridgetube.data.dao.ItemRecipeCrossDao
+import com.heee.fridgetube.data.*
+import com.heee.fridgetube.data.dao.*
 
 @Database(version = 1, entities = [Item::class, Cabinet::class, Recipe::class, ItemRecipeCrossRef::class])
 abstract class AppDatabase : RoomDatabase() {

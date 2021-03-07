@@ -6,27 +6,44 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.heee.fridgetube.R
+import com.heee.fridgetube.databinding.FragmentLibraryBinding
+import com.heee.fridgetube.ui.home.VideoListAdapter
 
 class LibraryFragment : Fragment() {
 
-    companion object {
-        fun newInstance() = LibraryFragment()
-    }
-
     private lateinit var viewModel: LibraryViewModel
+    private lateinit var binding: FragmentLibraryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_library, container, false)
+        binding = FragmentLibraryBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         viewModel = ViewModelProvider(this).get(LibraryViewModel::class.java)
-        // TODO: Use the ViewModel
+
+        binding.rvLibrary.layoutManager = LinearLayoutManager(context)
+        val adapter = VideoListAdapter(lifecycle, object : VideoListAdapter.OnItemClickListener {
+            override fun onItemClicked(videoId: String) {
+                val bundle = bundleOf("videoId" to videoId)
+                findNavController().navigate(R.id.action_goto_detail, bundle)
+            }
+        })
+        binding.rvLibrary.adapter = adapter
+
+        viewModel.recipes.observe(viewLifecycleOwner, Observer{
+            adapter.setRecipes(it)
+        })
+
     }
 
 }
