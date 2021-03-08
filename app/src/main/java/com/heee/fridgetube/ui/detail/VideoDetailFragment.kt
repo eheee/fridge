@@ -7,10 +7,13 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.Memo
 import com.heee.fridgetube.data.RecipeCard
 import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
+import com.heee.fridgetube.ui.memo.MemoViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -18,7 +21,8 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTube
 class VideoDetailFragment : Fragment() {
     lateinit var binding: FragmentVideoDetailBinding
 
-    private lateinit var viewModel: VideoDetailViewModel
+    private val viewModel: VideoDetailViewModel by viewModels()
+    private val memoViewModel: MemoViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,12 +30,6 @@ class VideoDetailFragment : Fragment() {
     ): View? {
         binding = FragmentVideoDetailBinding.inflate(inflater, container, false)
         return binding.root
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(VideoDetailViewModel::class.java)
-        // TODO: Use the ViewModel
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -47,7 +45,7 @@ class VideoDetailFragment : Fragment() {
             val textView = TextView(context)
             textView.text = item.name
             textView.setOnClickListener {
-                Toast.makeText(context, "${item.name} 클릭 ", Toast.LENGTH_SHORT).show()
+                memoViewModel.addMemo(Memo(comment = item.name))
             }
             binding.root.addView(textView)
         }
