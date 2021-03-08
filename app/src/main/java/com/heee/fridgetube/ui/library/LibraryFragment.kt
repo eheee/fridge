@@ -32,13 +32,13 @@ class LibraryFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(LibraryViewModel::class.java)
 
         binding.rvLibrary.layoutManager = LinearLayoutManager(context)
-        val adapter = VideoListAdapter(lifecycle, object : VideoListAdapter.OnItemClickListener {
-            override fun onItemClicked(videoId: String) {
-                val bundle = bundleOf("videoId" to videoId)
-                findNavController().navigate(R.id.action_goto_detail, bundle)
-            }
-        })
-        binding.rvLibrary.adapter = adapter
+//        val adapter = VideoListAdapter(lifecycle, object : VideoListAdapter.OnItemClickListener {
+//            override fun onItemClicked(videoId: String) {
+//                val bundle = bundleOf("videoId" to videoId)
+//                findNavController().navigate(R.id.action_goto_detail, bundle)
+//            }
+//        })
+//        binding.rvLibrary.adapter = adapter
 
 //        viewModel.recipes.observe(viewLifecycleOwner, Observer{
 //            adapter.setRecipes(it)

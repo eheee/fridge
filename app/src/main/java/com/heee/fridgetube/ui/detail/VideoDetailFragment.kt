@@ -8,15 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.Item
+import com.heee.fridgetube.data.RecipeCard
+import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
 class VideoDetailFragment : Fragment() {
-
-    companion object {
-        fun newInstance() = VideoDetailFragment()
-    }
+    lateinit var binding: FragmentVideoDetailBinding
 
     private lateinit var viewModel: VideoDetailViewModel
 
@@ -24,7 +24,8 @@ class VideoDetailFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_video_detail, container, false)
+        binding = FragmentVideoDetailBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -35,13 +36,17 @@ class VideoDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var videoId = arguments?.getString("videoId")
-        Toast.makeText(requireContext(), "$videoId", Toast.LENGTH_SHORT).show()
+        var recipeCard = arguments?.get("recipeCard") as RecipeCard
+        val inFridge = recipeCard.inFridge.map {
+            it.name
+        }
+        binding.detailVideoTitle.text = recipeCard.recipe.name
+        binding.tvDetailItemInFridge.text = inFridge.toString()
 
         val youtubePlayerView: YouTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.detail_youtube_player_view)
         youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youtubePlayer: YouTubePlayer) { // Called when the player is ready to play video
-                youtubePlayer?.loadVideo(videoId!!, 0F)
+                youtubePlayer.loadVideo(recipeCard.recipe.videoId, 0F)
             }
         })
     }

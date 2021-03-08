@@ -1,8 +1,12 @@
 package com.heee.fridgetube.data
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 class RecipeCard(
     val recipe: Recipe,
-) {
+) : Parcelable {
     val inFridge = mutableSetOf<Item>()
     val notInFridge = mutableSetOf<Item>()
 

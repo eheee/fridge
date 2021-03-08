@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.Recipe
 import com.heee.fridgetube.data.RecipeCard
 import com.heee.fridgetube.databinding.RecyclerViewRecipeBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -29,9 +30,9 @@ class VideoListAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val recipeCard = recipeCards[position]
         holder.binding.root.setOnClickListener {
-            itemClickListener.onItemClicked(recipeCard.recipe.videoId)
+            itemClickListener.onItemClicked(recipeCard)
         }
-        holder.readyVideo(recipeCard.recipe.videoId)
+        holder.readyVideo(recipeCard)
 
         val inFridge = recipeCard.inFridge.map { it.name }
         val notInFridge = recipeCard.notInFridge.map { it.name }
@@ -49,7 +50,7 @@ class VideoListAdapter(
     }
 
     interface OnItemClickListener {
-        fun onItemClicked(videoId: String)
+        fun onItemClicked(recipeCard: RecipeCard)
     }
 
     class ViewHolder(
@@ -58,7 +59,7 @@ class VideoListAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root) {
         private var youtubePlayer: YouTubePlayer? = null
-        private var currentVideoId: String? = null
+        lateinit var currentRecipeCard: RecipeCard
 
         init {
             val customPlayerUI =
@@ -66,20 +67,20 @@ class VideoListAdapter(
             val panel = customPlayerUI.findViewById<View>(R.id.panel)
             // To Apply the click event on WebView.
             panel.setOnClickListener {
-                onItemClickListener.onItemClicked(currentVideoId!!)
+                onItemClickListener.onItemClicked(currentRecipeCard)
             }
 
             binding.youtubePlayerView.addYouTubePlayerListener(object :
                 AbstractYouTubePlayerListener() {
                 override fun onReady(initializedYouTubePlayer: YouTubePlayer) { // Called when the player is ready to play video
                     youtubePlayer = initializedYouTubePlayer
-                    youtubePlayer?.cueVideo(currentVideoId!!, 0F)
+                    youtubePlayer?.cueVideo(currentRecipeCard.recipe.videoId, 0F)
                 }
             })
         }
 
-        fun readyVideo(videoId: String) {
-            currentVideoId = videoId
+        fun readyVideo(recipeCard: RecipeCard) {
+            currentRecipeCard = recipeCard
         }
     }
 
