@@ -1,50 +1,34 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
     <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
         android:id="@+id/detail_youtube_player_view"
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:autoPlay="false"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:showFullScreenButton="false" />
 
     <TextView
         android:id="@+id/detail_video_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Title"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detail_youtube_player_view" />
+        android:text="Title" />
 
     <TextView
         android:id="@+id/tv_detail_item_in_fridge"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        tools:text="itemsInFridge"
-        app:layout_constraintTop_toBottomOf="@id/detail_video_title"
-        />
+        tools:text="itemsInFridge" />
 
     <TextView
         android:id="@+id/tv_item_not_in_fridge"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:text="없는 재료"
-        app:layout_constraintTop_toBottomOf="@id/tv_detail_item_in_fridge"
-        />
+        android:layout_marginTop="20dp"
+        android:text="없는 재료" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_item_not_fridge"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintHeight_percent="0.5"
-        app:layout_constraintTop_toBottomOf="@id/tv_item_not_in_fridge"
-        />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

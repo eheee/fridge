@@ -1,14 +1,14 @@
 package com.heee.fridgetube.ui.detail
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.heee.fridgetube.R
-import com.heee.fridgetube.data.Item
 import com.heee.fridgetube.data.RecipeCard
 import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
@@ -42,6 +42,15 @@ class VideoDetailFragment : Fragment() {
         }
         binding.detailVideoTitle.text = recipeCard.recipe.name
         binding.tvDetailItemInFridge.text = inFridge.toString()
+
+        for(item in recipeCard.notInFridge) {
+            val textView = TextView(context)
+            textView.text = item.name
+            textView.setOnClickListener {
+                Toast.makeText(context, "${item.name} 클릭 ", Toast.LENGTH_SHORT).show()
+            }
+            binding.root.addView(textView)
+        }
 
         val youtubePlayerView: YouTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.detail_youtube_player_view)
         youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
