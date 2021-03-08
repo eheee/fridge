@@ -40,9 +40,9 @@ class LibraryFragment : Fragment() {
         })
         binding.rvLibrary.adapter = adapter
 
-        viewModel.recipes.observe(viewLifecycleOwner, Observer{
-            adapter.setRecipes(it)
-        })
+//        viewModel.recipes.observe(viewLifecycleOwner, Observer{
+//            adapter.setRecipes(it)
+//        })
 
     }
 

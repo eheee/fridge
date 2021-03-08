@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import com.heee.fridgetube.R
-import com.heee.fridgetube.data.Recipe
+import com.heee.fridgetube.data.RecipeCard
 import com.heee.fridgetube.databinding.RecyclerViewRecipeBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -16,7 +16,7 @@ class VideoListAdapter(
     val itemClickListener: OnItemClickListener,
 ) :
     RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
-    private var recipeList = listOf<Recipe>()
+    private var recipeCards = listOf<RecipeCard>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -27,18 +27,24 @@ class VideoListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val recipeCard = recipeCards[position]
         holder.binding.root.setOnClickListener {
-            itemClickListener?.onItemClicked(recipeList[position].videoId)
+            itemClickListener.onItemClicked(recipeCard.recipe.videoId)
         }
-        holder.readyVideo(recipeList[position].videoId)
-        //FIXME The title on video screen was changed instead of this textView.
-        holder.binding.videoTitle.text = recipeList[position].name
+        holder.readyVideo(recipeCard.recipe.videoId)
+
+        val inFridge = recipeCard.inFridge.map { it.name }
+        val notInFridge = recipeCard.notInFridge.map { it.name }
+
+        holder.binding.tvVideoTitle.text = "${recipeCard.recipe.name}"
+        holder.binding.tvItemInFridge.text = "있는 재료 : $inFridge"
+        holder.binding.tvItemNotInFridge.text = "없는 재료 : $notInFridge"
     }
 
-    override fun getItemCount(): Int = recipeList.size
+    override fun getItemCount(): Int = recipeCards.size
 
-    fun setRecipes(recipes: List<Recipe>) {
-        recipeList = recipes
+    fun setRecipes(recipeCards: List<RecipeCard>) {
+        this.recipeCards = recipeCards
         notifyDataSetChanged()
     }
 

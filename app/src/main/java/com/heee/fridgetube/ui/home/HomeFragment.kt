@@ -37,9 +37,9 @@ class HomeFragment : Fragment() {
         })
         recyclerView.adapter = adapter
 
-        viewModel.recipes.observe(viewLifecycleOwner, Observer {
-            adapter.setRecipes(it)
-        })
+        viewModel.recipes.observe(viewLifecycleOwner) {
+            adapter.setRecipes(it.toList())
+        }
 
         //Temp
         viewModel.getRecipes()
