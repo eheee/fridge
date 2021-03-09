@@ -9,6 +9,7 @@ import com.heee.fridgetube.databinding.RecyclerViewMemoBinding
 class MemoAdapter : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
 
     var list = listOf<Memo>()
+    var onItemClinkListener: OnItemClinkListener? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = RecyclerViewMemoBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -17,6 +18,9 @@ class MemoAdapter : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.binding.tvMemoComment.text = list[position].comment
+        holder.binding.tvMemoComment.setOnClickListener {
+            onItemClinkListener?.itemClick(list[position])
+        }
     }
 
     override fun getItemCount() = list.size
@@ -24,6 +28,10 @@ class MemoAdapter : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
     fun setMemoList(memos: List<Memo>) {
         list = memos
         notifyDataSetChanged()
+    }
+
+    interface OnItemClinkListener {
+        fun itemClick(memo: Memo)
     }
 
     class ViewHolder(val binding: RecyclerViewMemoBinding) : RecyclerView.ViewHolder(binding.root)

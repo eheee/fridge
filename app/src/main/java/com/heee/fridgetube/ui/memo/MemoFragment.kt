@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.Memo
 import com.heee.fridgetube.databinding.FragmentMemoBinding
 
 class MemoFragment : Fragment() {
@@ -30,6 +31,11 @@ class MemoFragment : Fragment() {
 
         binding.rvMemo.layoutManager = LinearLayoutManager(context)
         val adapter = MemoAdapter()
+        adapter.onItemClinkListener = object : MemoAdapter.OnItemClinkListener {
+            override fun itemClick(memo: Memo) {
+                viewModel.deleteMemo(memo)
+            }
+        }
         binding.rvMemo.adapter = adapter
 
         viewModel.memo.observe(viewLifecycleOwner) {

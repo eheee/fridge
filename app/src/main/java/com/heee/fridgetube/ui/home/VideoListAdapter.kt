@@ -79,6 +79,7 @@ class VideoListAdapter(
             })
         }
 
+        //TODO recipeCard sync problem.
         fun readyVideo(recipeCard: RecipeCard) {
             currentRecipeCard = recipeCard
         }

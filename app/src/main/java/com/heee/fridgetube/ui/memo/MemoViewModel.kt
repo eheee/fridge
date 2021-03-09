@@ -26,6 +26,15 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
             memoDao.addMemo(memo)
         }
+        getMemos()
+    }
+
+    fun deleteMemo(memo: Memo) {
+        val memoDao = db.memoDao()
+        viewModelScope.launch {
+            memoDao.deleteMemo(memo)
+        }
+        getMemos()
     }
 
 }
