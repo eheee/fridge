@@ -58,7 +58,6 @@ class VideoListAdapter(
         onItemClickListener: OnItemClickListener,
     ) :
         RecyclerView.ViewHolder(binding.root) {
-        private var youtubePlayer: YouTubePlayer? = null
         lateinit var currentRecipeCard: RecipeCard
 
         init {
@@ -72,9 +71,8 @@ class VideoListAdapter(
 
             binding.youtubePlayerView.addYouTubePlayerListener(object :
                 AbstractYouTubePlayerListener() {
-                override fun onReady(initializedYouTubePlayer: YouTubePlayer) { // Called when the player is ready to play video
-                    youtubePlayer = initializedYouTubePlayer
-                    youtubePlayer?.cueVideo(currentRecipeCard.recipe.videoId, 0F)
+                override fun onReady(youtubePlayer: YouTubePlayer) { // Called when the player is ready to play video
+                    youtubePlayer.cueVideo(currentRecipeCard.recipe.videoId, 0F)
                 }
             })
         }

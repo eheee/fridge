@@ -31,13 +31,8 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
 
             // 냉장고에 있는 재료로 만들 수 있는 레시피
             val itemWithRecipes = itemRecipeCrossDao.getItemWithRecipes(itemsInFridge)
-            val videoIds = mutableSetOf<String>()
-            for (itemWithRecipe in itemWithRecipes) {
-                val recipes = itemWithRecipe.recipes
-                for(recipe in recipes){
-                    videoIds.add(recipe.videoId)
-                }
-            }
+            val videos = itemWithRecipes.flatMap { it.recipes }
+            val videoIds = videos.map { it.videoId }.toSet()
 
             // 보유한 재료 비율이 높은 순으로 레시피 정렬
             val sortedRecipe: TreeSet<RecipeCard> = sortedSetOf(RecipeCard)  //Use companion object as Comparator
