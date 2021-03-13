@@ -3,7 +3,6 @@ package com.heee.fridgetube.ui.fridge
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.heee.fridgetube.data.Cabinet
 import com.heee.fridgetube.data.CabinetAndItem
 import com.heee.fridgetube.databinding.RecyclerViewCabinetBinding
 

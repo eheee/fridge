@@ -6,12 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.heee.fridgetube.R
-import com.heee.fridgetube.data.RecipeCard
+import com.heee.fridgetube.data.CounterTop
 import com.heee.fridgetube.databinding.FragmentLibraryBinding
 import com.heee.fridgetube.ui.home.VideoListAdapter
 
@@ -35,9 +33,9 @@ class LibraryFragment : Fragment() {
         binding.rvLibrary.layoutManager = LinearLayoutManager(context)
         val adapter = VideoListAdapter(object : VideoListAdapter.OnItemClickListener {
 
-            override fun onItemClicked(recipeCard: RecipeCard) {
+            override fun onItemClicked(counterTop: CounterTop) {
                 val bundle = Bundle()
-                bundle.putParcelable("recipeCard", recipeCard)
+                bundle.putParcelable("counterTop", counterTop)
                 findNavController().navigate(R.id.action_goto_detail, bundle)
             }
         })

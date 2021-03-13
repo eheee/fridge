@@ -1,24 +1,18 @@
 package com.heee.fridgetube.ui.home
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.size.Scale
-import com.heee.fridgetube.R
-import com.heee.fridgetube.data.Recipe
-import com.heee.fridgetube.data.RecipeCard
+import com.heee.fridgetube.data.CounterTop
 import com.heee.fridgetube.databinding.RecyclerViewRecipeBinding
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
-import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 class VideoListAdapter(
     val itemClickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
-    private var recipeCards = listOf<RecipeCard>()
+    private var counterTopList = listOf<CounterTop>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
@@ -28,34 +22,34 @@ class VideoListAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val recipeCard = recipeCards[position]
+        val counterTop = counterTopList[position]
         holder.binding.root.setOnClickListener {
-            itemClickListener.onItemClicked(recipeCard)
+            itemClickListener.onItemClicked(counterTop)
         }
 
 
-        holder.binding.ivThumbnail.load("https://img.youtube.com/vi/${recipeCard.recipe.videoId}/hqdefault.jpg")    //TODO Fill the imageView or Use 'mqdefault.jpg' support 16:9 size.
+        holder.binding.ivThumbnail.load("https://img.youtube.com/vi/${counterTop.recipe.videoId}/hqdefault.jpg")    //TODO Fill the imageView or Use 'mqdefault.jpg' support 16:9 size.
         {
             scale(Scale.FILL)
         }
 
-        val inFridge = recipeCard.inFridge.map { it.name }
-        val notInFridge = recipeCard.notInFridge.map { it.name }
+        val inFridge = counterTop.inFridge.map { it.name }
+        val notInFridge = counterTop.notInFridge.map { it.name }
 
-        holder.binding.tvVideoTitle.text = "${recipeCard.recipe.name}"
+        holder.binding.tvVideoTitle.text = "${counterTop.recipe.name}"
         holder.binding.tvItemInFridge.text = "있는 재료 : $inFridge"
         holder.binding.tvItemNotInFridge.text = "없는 재료 : $notInFridge"
     }
 
-    override fun getItemCount(): Int = recipeCards.size
+    override fun getItemCount(): Int = counterTopList.size
 
-    fun setRecipes(recipeCards: List<RecipeCard>) {
-        this.recipeCards = recipeCards
+    fun setRecipes(counterTops: List<CounterTop>) {
+        this.counterTopList = counterTops
         notifyDataSetChanged()
     }
 
     interface OnItemClickListener {
-        fun onItemClicked(recipeCard: RecipeCard)
+        fun onItemClicked(counterTop: CounterTop)
     }
 
     class ViewHolder(

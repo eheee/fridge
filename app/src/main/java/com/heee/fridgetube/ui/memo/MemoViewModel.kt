@@ -2,7 +2,7 @@ package com.heee.fridgetube.ui.memo
 
 import android.app.Application
 import androidx.lifecycle.*
-import com.heee.fridgetube.data.Memo
+import com.heee.fridgetube.data.entity.Memo
 import com.heee.fridgetube.data.room.AppDatabase
 import kotlinx.coroutines.launch
 

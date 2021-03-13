@@ -1,10 +1,8 @@
 package com.heee.fridgetube.ui.item
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.*
-import androidx.room.Room
-import com.heee.fridgetube.data.Item
+import com.heee.fridgetube.data.entity.Item
 import com.heee.fridgetube.data.room.AppDatabase
 import kotlinx.coroutines.launch
 

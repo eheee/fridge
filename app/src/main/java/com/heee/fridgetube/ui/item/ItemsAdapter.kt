@@ -1,11 +1,9 @@
 package com.heee.fridgetube.ui.item
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.heee.fridgetube.data.Item
+import com.heee.fridgetube.data.entity.Item
 import com.heee.fridgetube.databinding.RecyclerViewItemBinding
 
 class ItemsAdapter: RecyclerView.Adapter<ItemsAdapter.ViewHolder>() {

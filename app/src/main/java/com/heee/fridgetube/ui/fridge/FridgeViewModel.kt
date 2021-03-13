@@ -1,12 +1,11 @@
 package com.heee.fridgetube.ui.fridge
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.heee.fridgetube.data.Cabinet
+import com.heee.fridgetube.data.entity.Cabinet
 import com.heee.fridgetube.data.CabinetAndItem
 import com.heee.fridgetube.data.room.AppDatabase
 import kotlinx.coroutines.launch

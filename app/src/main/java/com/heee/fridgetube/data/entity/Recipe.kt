@@ -1,4 +1,4 @@
-package com.heee.fridgetube.data
+package com.heee.fridgetube.data.entity
 
 import android.os.Parcelable
 import androidx.room.Entity

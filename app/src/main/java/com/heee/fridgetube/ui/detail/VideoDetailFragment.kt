@@ -5,14 +5,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.ViewModelProvider
 import com.heee.fridgetube.R
-import com.heee.fridgetube.data.Library
-import com.heee.fridgetube.data.Memo
-import com.heee.fridgetube.data.RecipeCard
+import com.heee.fridgetube.data.entity.Library
+import com.heee.fridgetube.data.entity.Memo
+import com.heee.fridgetube.data.CounterTop
 import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
 import com.heee.fridgetube.ui.library.LibraryViewModel
 import com.heee.fridgetube.ui.memo.MemoViewModel
@@ -37,14 +35,14 @@ class VideoDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        var recipeCard = arguments?.get("recipeCard") as RecipeCard
-        val inFridge = recipeCard.inFridge.map {
+        var counterTop = arguments?.get("counterTop") as CounterTop
+        val inFridge = counterTop.inFridge.map {
             it.name
         }
-        binding.detailVideoTitle.text = recipeCard.recipe.name
+        binding.detailVideoTitle.text = counterTop.recipe.name
         binding.tvDetailItemInFridge.text = inFridge.toString()
 
-        for(item in recipeCard.notInFridge) {
+        for(item in counterTop.notInFridge) {
             val textView = TextView(context)
             textView.text = item.name
             textView.setOnClickListener {
@@ -56,12 +54,12 @@ class VideoDetailFragment : Fragment() {
         val youtubePlayerView: YouTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.detail_youtube_player_view)
         youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youtubePlayer: YouTubePlayer) { // Called when the player is ready to play video
-                youtubePlayer.loadVideo(recipeCard.recipe.videoId, 0F)
+                youtubePlayer.loadVideo(counterTop.recipe.videoId, 0F)
             }
         })
 
         binding.btnWatchLater.setOnClickListener {
-            libraryVIewMemo.addLibrary(Library(recipeCard.recipe.videoId))
+            libraryVIewMemo.addLibrary(Library(counterTop.recipe.videoId))
         }
     }
 

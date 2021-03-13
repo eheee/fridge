@@ -3,7 +3,7 @@ package com.heee.fridgetube.ui.memo
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.heee.fridgetube.data.Memo
+import com.heee.fridgetube.data.entity.Memo
 import com.heee.fridgetube.databinding.RecyclerViewMemoBinding
 
 class MemoAdapter : RecyclerView.Adapter<MemoAdapter.ViewHolder>() {
