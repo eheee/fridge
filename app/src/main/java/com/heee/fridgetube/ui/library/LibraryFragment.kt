@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.RecipeCard
 import com.heee.fridgetube.databinding.FragmentLibraryBinding
 import com.heee.fridgetube.ui.home.VideoListAdapter
 
@@ -32,17 +33,21 @@ class LibraryFragment : Fragment() {
         viewModel = ViewModelProvider(this).get(LibraryViewModel::class.java)
 
         binding.rvLibrary.layoutManager = LinearLayoutManager(context)
-//        val adapter = VideoListAdapter(lifecycle, object : VideoListAdapter.OnItemClickListener {
-//            override fun onItemClicked(videoId: String) {
-//                val bundle = bundleOf("videoId" to videoId)
-//                findNavController().navigate(R.id.action_goto_detail, bundle)
-//            }
-//        })
-//        binding.rvLibrary.adapter = adapter
+        val adapter = VideoListAdapter(object : VideoListAdapter.OnItemClickListener {
 
-//        viewModel.recipes.observe(viewLifecycleOwner, Observer{
-//            adapter.setRecipes(it)
-//        })
+            override fun onItemClicked(recipeCard: RecipeCard) {
+                val bundle = Bundle()
+                bundle.putParcelable("recipeCard", recipeCard)
+                findNavController().navigate(R.id.action_goto_detail, bundle)
+            }
+        })
+        binding.rvLibrary.adapter = adapter
+
+        viewModel.recipes.observe(viewLifecycleOwner){
+            adapter.setRecipes(it)
+        }
+
+        viewModel.getLibrary()
 
     }
 

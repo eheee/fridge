@@ -39,7 +39,7 @@ class HomeViewModel(application: Application) : AndroidViewModel(application) {
             val recipeWithItems = itemRecipeCrossDao.getRecipeWithItems(videoIds.toList())
 
             for(recipeWithItem in recipeWithItems) {
-                val recipeCard = RecipeCard(recipeWithItem.recipe)
+                val recipeCard = RecipeCard(recipeWithItem.recipe, itemsInFridge)
                 for (item in recipeWithItem.items){
                     if(itemsInFridge.contains(item.id)){
                         recipeCard.inFridge.add(item)

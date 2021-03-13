@@ -10,9 +10,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.Library
 import com.heee.fridgetube.data.Memo
 import com.heee.fridgetube.data.RecipeCard
 import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
+import com.heee.fridgetube.ui.library.LibraryViewModel
 import com.heee.fridgetube.ui.memo.MemoViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
@@ -23,6 +25,7 @@ class VideoDetailFragment : Fragment() {
 
     private val viewModel: VideoDetailViewModel by viewModels()
     private val memoViewModel: MemoViewModel by viewModels()
+    private val libraryVIewMemo: LibraryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,6 +59,10 @@ class VideoDetailFragment : Fragment() {
                 youtubePlayer.loadVideo(recipeCard.recipe.videoId, 0F)
             }
         })
+
+        binding.btnWatchLater.setOnClickListener {
+            libraryVIewMemo.addLibrary(Library(recipeCard.recipe.videoId))
+        }
     }
 
 }

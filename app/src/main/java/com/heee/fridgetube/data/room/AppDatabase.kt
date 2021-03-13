@@ -9,13 +9,14 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import com.heee.fridgetube.data.*
 import com.heee.fridgetube.data.dao.*
 
-@Database(version = 1, entities = [Item::class, Cabinet::class, Recipe::class, ItemRecipeCrossRef::class, Memo::class])
+@Database(version = 1, entities = [Item::class, Cabinet::class, Recipe::class, ItemRecipeCrossRef::class, Memo::class, Library::class])
 abstract class AppDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
     abstract fun cabinetDao(): CabinetDao
     abstract fun cabinetAndItemDao(): CabinetAndItemDao
     abstract fun itemRecipeCrossDao(): ItemRecipeCrossDao
     abstract fun memoDao(): MemoDao
+    abstract fun libraryDao(): LibraryDao
 
     companion object {
         var INSTANCE: AppDatabase? = null

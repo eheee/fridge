@@ -6,9 +6,14 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 class RecipeCard(
     val recipe: Recipe,
+    val itemsInFridge: List<Long>
 ) : Parcelable {
     val inFridge = mutableSetOf<Item>()
     val notInFridge = mutableSetOf<Item>()
+
+    init {
+
+    }
 
     companion object : Comparator<RecipeCard> {
         override fun compare(o1: RecipeCard?, o2: RecipeCard?): Int {

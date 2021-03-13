@@ -18,6 +18,12 @@
         android:layout_height="wrap_content"
         android:text="Title" />
 
+    <Button
+        android:id="@+id/btn_watch_later"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="나중에 볼 영상" />
+
     <TextView
         android:id="@+id/tv_detail_item_in_fridge"
         android:layout_height="wrap_content"
