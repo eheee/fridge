@@ -7,12 +7,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
-        android:id="@+id/youtube_player_view"
+    <ImageView
+        android:id="@+id/iv_thumbnail"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:autoPlay="false"
-        app:showFullScreenButton="false" />
+        android:layout_height="320dp"
+        android:background="@color/cardview_dark_background"
+        />
 
     <TextView
         android:id="@+id/tv_video_title"

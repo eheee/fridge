@@ -30,7 +30,7 @@ class HomeFragment : Fragment() {
         recyclerView.setHasFixedSize(true)  // Let RecyclerView know the layout of RecyclerView has always same size.
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
 
-        val adapter = VideoListAdapter(this.lifecycle, itemClickListener = object : VideoListAdapter.OnItemClickListener{
+        val adapter = VideoListAdapter(object : VideoListAdapter.OnItemClickListener{
             override fun onItemClicked(recipeCard: RecipeCard) {
                 val bundle = Bundle()
                 bundle.putParcelable("recipeCard", recipeCard)

@@ -5,6 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Lifecycle
 import androidx.recyclerview.widget.RecyclerView
+import coil.api.load
+import coil.size.Scale
 import com.heee.fridgetube.R
 import com.heee.fridgetube.data.Recipe
 import com.heee.fridgetube.data.RecipeCard
@@ -13,8 +15,7 @@ import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 class VideoListAdapter(
-    private val lifecycle: Lifecycle,
-    val itemClickListener: OnItemClickListener,
+    val itemClickListener: OnItemClickListener
 ) :
     RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
     private var recipeCards = listOf<RecipeCard>()
@@ -22,9 +23,8 @@ class VideoListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             RecyclerViewRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        lifecycle.addObserver(binding.youtubePlayerView)
 
-        return ViewHolder(binding, itemClickListener)
+        return ViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -32,7 +32,12 @@ class VideoListAdapter(
         holder.binding.root.setOnClickListener {
             itemClickListener.onItemClicked(recipeCard)
         }
-        holder.readyVideo(recipeCard)
+
+
+        holder.binding.ivThumbnail.load("https://img.youtube.com/vi/${recipeCard.recipe.videoId}/hqdefault.jpg")    //TODO Fill the imageView or Use 'mqdefault.jpg' support 16:9 size.
+        {
+            scale(Scale.FILL)
+        }
 
         val inFridge = recipeCard.inFridge.map { it.name }
         val notInFridge = recipeCard.notInFridge.map { it.name }
@@ -54,33 +59,8 @@ class VideoListAdapter(
     }
 
     class ViewHolder(
-        val binding: RecyclerViewRecipeBinding,
-        onItemClickListener: OnItemClickListener,
+        val binding: RecyclerViewRecipeBinding
     ) :
-        RecyclerView.ViewHolder(binding.root) {
-        lateinit var currentRecipeCard: RecipeCard
-
-        init {
-            val customPlayerUI =
-                binding.youtubePlayerView.inflateCustomPlayerUi(R.layout.custom_youtube_player_ui)
-            val panel = customPlayerUI.findViewById<View>(R.id.panel)
-            // To Apply the click event on WebView.
-            panel.setOnClickListener {
-                onItemClickListener.onItemClicked(currentRecipeCard)
-            }
-
-            binding.youtubePlayerView.addYouTubePlayerListener(object :
-                AbstractYouTubePlayerListener() {
-                override fun onReady(youtubePlayer: YouTubePlayer) { // Called when the player is ready to play video
-                    youtubePlayer.cueVideo(currentRecipeCard.recipe.videoId, 0F)
-                }
-            })
-        }
-
-        //TODO recipeCard sync problem.
-        fun readyVideo(recipeCard: RecipeCard) {
-            currentRecipeCard = recipeCard
-        }
-    }
+        RecyclerView.ViewHolder(binding.root)
 
 }
