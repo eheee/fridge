@@ -6,10 +6,7 @@ import androidx.room.Query
 import com.heee.fridgetube.data.entity.Item
 
 @Dao
-interface ItemDao {
-    @Insert
-    suspend fun addItem(item: Item)
-
+interface ItemDao : BaseDao<Item> {
     @Query("select * from Item order by id asc")
-    suspend fun fetchAllItems(): List<Item>
+    suspend fun getItems(): List<Item>
 }

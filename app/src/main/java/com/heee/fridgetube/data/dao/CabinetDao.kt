@@ -6,10 +6,7 @@ import androidx.room.Query
 import com.heee.fridgetube.data.entity.Cabinet
 
 @Dao
-interface CabinetDao {
+interface CabinetDao : BaseDao<Cabinet> {
     @Query("SELECT * FROM Cabinet")
-    fun fetchAllCabinets(): List<Cabinet>
-
-    @Insert
-    suspend fun addCabinet(cabinet: Cabinet)
+    fun getCabinets(): List<Cabinet>
 }

@@ -7,13 +7,8 @@ import androidx.room.Query
 import com.heee.fridgetube.data.entity.Memo
 
 @Dao
-interface MemoDao {
-    @Insert
-    suspend fun addMemo(vararg memo: Memo)
+interface MemoDao: BaseDao<Memo> {
 
     @Query("SELECT * FROM Memo")
     suspend fun getMemos(): List<Memo>
-
-    @Delete
-    suspend fun deleteMemo(vararg memo: Memo)
 }

@@ -24,7 +24,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
     fun addMemo(memo: Memo){
         val memoDao = db.memoDao()
         viewModelScope.launch {
-            memoDao.addMemo(memo)
+            memoDao.insert(memo)
         }
         getMemos()
     }
@@ -32,7 +32,7 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
     fun deleteMemo(memo: Memo) {
         val memoDao = db.memoDao()
         viewModelScope.launch {
-            memoDao.deleteMemo(memo)
+            memoDao.delete(memo)
         }
         getMemos()
     }

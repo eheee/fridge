@@ -18,7 +18,7 @@ class ItemViewModel(application: Application) : AndroidViewModel(application) {
         val dao = db.itemDao()
 
         viewModelScope.launch {
-            val items = dao.fetchAllItems()
+            val items = dao.getItems()
             _items.value = items
         }
     }

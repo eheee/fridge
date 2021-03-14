@@ -20,7 +20,7 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
     fun addLibrary(library: Library) {
         val libraryDao = db.libraryDao()
         viewModelScope.launch {
-            libraryDao.addLibrary(library)
+            libraryDao.insert(library)
         }
         getLibrary()
     }
@@ -31,7 +31,7 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
         val libraryDao = db.libraryDao()
         val itemRecipeCrossDao = db.itemRecipeCrossDao()
         viewModelScope.launch {
-            val videoIds = libraryDao.getLibrary().map { it.videoId }
+            val videoIds = libraryDao.getLibraries().map { it.videoId }
             Log.d(TAG, videoIds.toString())
 
             // TODO Fetch fridge data from ViewModel.

@@ -7,7 +7,6 @@ import com.heee.fridgetube.data.CabinetAndItem
 
 @Dao
 interface CabinetAndItemDao {
-
     @Transaction
     @Query("SELECT * FROM Cabinet")
     suspend fun getCabinetAndItem(): List<CabinetAndItem>

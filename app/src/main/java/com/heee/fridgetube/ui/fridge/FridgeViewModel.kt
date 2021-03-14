@@ -26,7 +26,7 @@ class FridgeViewModel(application: Application) : AndroidViewModel(application) 
         val dao = db.cabinetDao()
         viewModelScope.launch {
             val cabinet = Cabinet(inputDate = System.currentTimeMillis(), itemId = itemId)
-            dao.addCabinet(cabinet)
+            dao.insert(cabinet)
         }
     }
 
