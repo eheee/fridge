@@ -10,8 +10,9 @@
     <ImageView
         android:id="@+id/iv_thumbnail"
         android:layout_width="match_parent"
-        android:layout_height="320dp"
-        android:background="@color/cardview_dark_background"
+        android:layout_height="225dp"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
         />
 
     <TextView
