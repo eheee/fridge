@@ -12,5 +12,19 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
         <!-- Customize your theme here. -->
+        <item name="android:textViewStyle">@style/SpoqaNotoNeoTextViewStyle</item>
+        <item name="android:buttonStyle">@style/SpoqaNotoNeoButtonStyle</item>
+    </style>
+
+    <style name="SpoqaNotoNeoTextViewStyle" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/default_font_size</item>
+        <item name="android:fontFamily">@font/spoqa_ha_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_ha_sans_neo_regular</item> <!--Support library under 26 -->
+    </style>
+
+    <style name="SpoqaNotoNeoButtonStyle" parent="@style/Widget.MaterialComponents.Button">
+        <item name="android:textSize">@dimen/default_font_size</item>
+        <item name="android:fontFamily">@font/spoqa_ha_sans_neo_regular</item>
+        <item name="fontFamily">@font/spoqa_ha_sans_neo_regular</item>
     </style>
 </resources>
