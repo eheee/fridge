@@ -17,7 +17,7 @@
         android:id="@+id/btn_complete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/btn_item_select_complete"
+        android:text="@string/item_selection_complete"
         app:layout_constraintTop_toBottomOf="@+id/rv_items"
         app:layout_constraintEnd_toEndOf="parent" />
 

@@ -8,8 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="orange_800">#F2600C</color>
-    <color name="orange_a200">#FF9D3F</color>
-    <color name="deep_orange_900">#B53D00</color>
+    <color name="orange">#F2600C</color>
+    <color name="light_orange">#FF9D3F</color>
+    <color name="deep_orange">#B53D00</color>
+    <color name="deep_green">#267302</color>
 
 </resources>

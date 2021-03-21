@@ -7,9 +7,10 @@ import coil.api.load
 import coil.size.Scale
 import com.heee.fridgetube.data.CounterTop
 import com.heee.fridgetube.databinding.RecyclerViewRecipeBinding
+import com.heee.fridgetube.ui.utils.toRoundedShape
 
 class VideoListAdapter(
-    val itemClickListener: OnItemClickListener
+    val itemClickListener: OnItemClickListener,
 ) :
     RecyclerView.Adapter<VideoListAdapter.ViewHolder>() {
     private var counterTopList = listOf<CounterTop>()
@@ -17,6 +18,8 @@ class VideoListAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding =
             RecyclerViewRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+
+        binding.tvTag.toRoundedShape()
 
         return ViewHolder(binding)
     }
@@ -33,12 +36,12 @@ class VideoListAdapter(
             scale(Scale.FILL)
         }
 
-        val inFridge = counterTop.inFridge.map { it.name }
-        val notInFridge = counterTop.notInFridge.map { it.name }
+        val inFridge = counterTop.inFridge.asSequence().map { it.name }.joinToString(", ")
+        val notInFridge = counterTop.notInFridge.asSequence().map { it.name }.joinToString(", ")
 
         holder.binding.tvVideoTitle.text = "${counterTop.recipe.name}"
-        holder.binding.tvItemInFridge.text = "있는 재료 : $inFridge"
-        holder.binding.tvItemNotInFridge.text = "없는 재료 : $notInFridge"
+        holder.binding.tvItemInFridge.text = "$inFridge"
+        holder.binding.tvItemNotInFridge.text = "$notInFridge"
     }
 
     override fun getItemCount(): Int = counterTopList.size
@@ -53,7 +56,7 @@ class VideoListAdapter(
     }
 
     class ViewHolder(
-        val binding: RecyclerViewRecipeBinding
+        val binding: RecyclerViewRecipeBinding,
     ) :
         RecyclerView.ViewHolder(binding.root)
 

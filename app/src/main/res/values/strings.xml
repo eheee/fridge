@@ -5,5 +5,10 @@
     <string name="title_fridge">냉장고</string>
     <string name="title_memo">장보기메모</string>
 
-    <string name="btn_item_select_complete">선택 완료</string>
+    <!--  Home  -->
+    <string name="item_selection_complete">선택 완료</string>
+    <string name="items_in_fridge">있는 재료</string>
+    <string name="items_not_in_fridge">없는 재료</string>
+    <string name="all_items_in_fridge">당장 가능</string>
+    <string name="to_library">보관함</string>
 </resources>

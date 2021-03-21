@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.FridgeTube" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
+    <style name="Theme.FridgeTube" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/orange_800</item>
-        <item name="colorPrimaryVariant">@color/orange_a200</item>
+        <item name="colorPrimary">@color/orange</item>
+        <item name="colorPrimaryVariant">@color/light_orange</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>
@@ -18,13 +18,19 @@
 
     <style name="SpoqaNotoNeoTextViewStyle" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textSize">@dimen/default_font_size</item>
-        <item name="android:fontFamily">@font/spoqa_ha_sans_neo_regular</item>
-        <item name="fontFamily">@font/spoqa_ha_sans_neo_regular</item> <!--Support library under 26 -->
+        <item name="android:fontFamily">@font/spoqa_ha_sans_neo_bold_family</item>
+        <item name="fontFamily">@font/spoqa_ha_sans_neo_regular_family</item> <!--Support library under 26 -->
     </style>
 
     <style name="SpoqaNotoNeoButtonStyle" parent="@style/Widget.MaterialComponents.Button">
         <item name="android:textSize">@dimen/default_font_size</item>
-        <item name="android:fontFamily">@font/spoqa_ha_sans_neo_regular</item>
-        <item name="fontFamily">@font/spoqa_ha_sans_neo_regular</item>
+        <item name="android:fontFamily">@font/spoqa_ha_sans_neo_regular_family</item>
+        <item name="fontFamily">@font/spoqa_ha_sans_neo_regular_family</item>
+    </style>
+
+    <style name="SpoqaNotoNeoBoldTextViewStyle" parent="@style/Widget.MaterialComponents.TextView">
+        <item name="android:textSize">@dimen/default_font_size</item>
+        <item name="android:fontFamily">@font/spoqa_ha_sans_neo_bold_family</item>
+        <item name="fontFamily">@font/spoqa_ha_sans_neo_bold_family</item>
     </style>
 </resources>
