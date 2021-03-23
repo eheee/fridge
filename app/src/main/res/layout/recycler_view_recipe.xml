@@ -49,20 +49,11 @@
             style="@style/SpoqaNotoNeoBoldTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="10dp"
             android:textSize="@dimen/list_item_title_font_size"
             app:layout_constraintStart_toStartOf="@id/tv_tag"
             app:layout_constraintTop_toBottomOf="@id/tv_tag"
             tools:text="소세지 야채 볶음" />
-
-        <ImageView
-            android:id="@+id/iv_carrot"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="7dp"
-            android:src="@drawable/ic_carrot_icon"
-            app:layout_constraintStart_toStartOf="@+id/tv_video_title"
-            app:layout_constraintTop_toBottomOf="@id/tv_video_title" />
 
         <TextView
             android:id="@+id/tv_inFridge"
@@ -71,45 +62,40 @@
             android:layout_height="wrap_content"
             android:text="@string/items_in_fridge"
             android:textColor="@color/deep_green"
-            app:layout_constraintStart_toEndOf="@+id/iv_carrot"
-            app:layout_constraintTop_toTopOf="@+id/iv_carrot" />
+            app:layout_constraintStart_toStartOf="@+id/tv_video_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_in_fridge" />
 
         <TextView
             android:id="@+id/tv_item_in_fridge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/items_margin_left"
+            android:layout_marginTop="8dp"
+            android:lineSpacingExtra="4dp"
             app:layout_constraintEnd_toEndOf="@+id/btn_add_library"
             app:layout_constraintStart_toEndOf="@+id/tv_inFridge"
-            app:layout_constraintTop_toTopOf="@+id/iv_carrot"
-            tools:text="감자, 고구마, 소세지" />
-
-        <ImageView
-            android:id="@+id/iv_cart"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_marginTop="@dimen/not_in_fridge_padding_top"
-            android:src="@drawable/ic_shopping_cart_black_24dp"
-            app:layout_constraintStart_toStartOf="@+id/iv_carrot"
-            app:layout_constraintTop_toBottomOf="@+id/iv_carrot" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_video_title"
+            tools:text="감자, 고구마, 소세지, 김, 김치, 수박, 메론, 바나나, 굴, 군고구마, 소주" />
 
         <TextView
             android:id="@+id/tv_not_inFridge"
+            style="@style/SpoqaNotoNeoBoldTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/items_not_in_fridge"
             android:textColor="@color/deep_green"
-            android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@+id/iv_cart"
-            app:layout_constraintTop_toTopOf="@+id/iv_cart" />
+            app:layout_constraintStart_toStartOf="@+id/tv_inFridge"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_not_in_fridge" />
 
         <TextView
             android:id="@+id/tv_item_not_in_fridge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:lineSpacingExtra="4dp"
             app:layout_constraintEnd_toEndOf="@+id/tv_item_in_fridge"
             app:layout_constraintStart_toStartOf="@+id/tv_item_in_fridge"
-            app:layout_constraintTop_toTopOf="@+id/iv_cart"
+            app:layout_constraintTop_toBottomOf="@+id/tv_item_in_fridge"
             tools:text="김, 미역" />
 
         <Button
@@ -117,9 +103,13 @@
             style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="15dp"
-            android:text="@string/to_library"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="15dp"
+            android:insetTop="0dp"
+            android:insetRight="-10dp"
+            android:insetBottom="0dp"
+            android:minWidth="0dp"
+            android:minHeight="0dp"
             app:icon="@drawable/ic_baseline_video_library_24_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/iv_thumbnail" />

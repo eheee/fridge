@@ -15,3 +15,7 @@ fun TextView.toRoundedShape() {
     val shapeDrawable = MaterialShapeDrawable(shapeAppearanceModel)
     background = shapeDrawable
 }
+
+fun View.visible(isVisiable: Boolean) {
+    visibility = if (isVisiable) View.VISIBLE else View.GONE
+}

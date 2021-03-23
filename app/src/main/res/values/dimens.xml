@@ -8,18 +8,18 @@
     <dimen name="default_font_size">14sp</dimen>
     <dimen name="button_font_size">14sp</dimen>
     <dimen name="text_input_font_size">16sp</dimen>
-    <dimen name="list_item_title_font_size">17sp</dimen>
+    <dimen name="list_item_title_font_size">16sp</dimen>
     <dimen name="list_title_font_size">14sp</dimen>
     <dimen name="default_corner_radius">15dp</dimen>
 
     <!--  home  -->
-    <dimen name="cv_corner_radius">20dp</dimen>
+    <dimen name="cv_corner_radius">10dp</dimen>
     <dimen name="cv_elevation">5dp</dimen>
     <dimen name="cv_padding_bottom">15dp</dimen>
     <dimen name="cv_list_item_margin_left">15dp</dimen>
     <dimen name="cv_list_item_margin_top">8dp</dimen>
     <dimen name="tag_padding">5dp</dimen>
-    <dimen name="tag_font_size">12sp</dimen>
+    <dimen name="tag_font_size">11sp</dimen>
     <dimen name="items_margin_left">10dp</dimen>
     <dimen name="not_in_fridge_padding_top">3dp</dimen>
 
