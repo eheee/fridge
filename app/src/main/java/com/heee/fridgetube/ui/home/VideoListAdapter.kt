@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.size.Scale
 import com.heee.fridgetube.data.CounterTop
+import com.heee.fridgetube.data.entity.Item
 import com.heee.fridgetube.databinding.RecyclerViewRecipeBinding
 import com.heee.fridgetube.ui.utils.toRoundedShape
 
@@ -30,8 +31,7 @@ class VideoListAdapter(
             itemClickListener.onItemClicked(counterTop)
         }
 
-
-        holder.binding.ivThumbnail.load("https://img.youtube.com/vi/${counterTop.recipe.videoId}/hqdefault.jpg")    //TODO Fill the imageView or Use 'mqdefault.jpg' support 16:9 size.
+        holder.binding.ivThumbnail.load(YOUTUBE_IMG_URI + counterTop.recipe.videoId + HIGH_QUALITY_IMG)    //TODO Fill the imageView or Use 'mqdefault.jpg' support 16:9 size.
         {
             scale(Scale.FILL)
         }
@@ -60,4 +60,8 @@ class VideoListAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root)
 
+    companion object {
+        const val YOUTUBE_IMG_URI = "https://img.youtube.com/vi/"
+        const val HIGH_QUALITY_IMG = "/hqdefault.jpg"
+    }
 }

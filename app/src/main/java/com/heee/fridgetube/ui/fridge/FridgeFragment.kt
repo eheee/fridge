@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.heee.fridgetube.R
 import com.heee.fridgetube.databinding.FragmentFridgeBinding
+import com.heee.fridgetube.ui.home.HomeViewModel
 
 class FridgeFragment : Fragment() {
 
@@ -24,10 +25,6 @@ class FridgeFragment : Fragment() {
         binding = FragmentFridgeBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
