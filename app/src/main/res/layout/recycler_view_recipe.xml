@@ -50,7 +50,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:textColor="@color/black"
             android:textSize="@dimen/list_item_title_font_size"
             app:layout_constraintStart_toStartOf="@id/tv_tag"
             app:layout_constraintTop_toBottomOf="@id/tv_tag"
@@ -61,7 +60,6 @@
             style="@style/SpoqaNotoNeoBoldTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
             android:text="@string/items_in_fridge"
             app:layout_constraintStart_toStartOf="@+id/tv_video_title"
             app:layout_constraintTop_toTopOf="@+id/tv_item_in_fridge" />
@@ -72,7 +70,6 @@
             android:layout_height="wrap_content"
             style="@style/SpoqaNotoNeoBoldTextViewStyle"
             android:layout_marginLeft="@dimen/items_margin_left"
-            android:textColor="@color/black"
             android:layout_marginTop="8dp"
             android:lineSpacingExtra="4dp"
             app:layout_constraintEnd_toEndOf="@+id/btn_add_library"

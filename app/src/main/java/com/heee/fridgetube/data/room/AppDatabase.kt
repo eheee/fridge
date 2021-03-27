@@ -4,10 +4,12 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.heee.fridgetube.data.dao.*
 import com.heee.fridgetube.data.entity.*
 
 @Database(version = 1, entities = [Item::class, Cabinet::class, Recipe::class, ItemRecipeCrossRef::class, Memo::class, Library::class])
+@TypeConverters(Item.Converter::class)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun itemDao(): ItemDao
     abstract fun cabinetDao(): CabinetDao
