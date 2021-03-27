@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.heee.fridgetube.R
@@ -15,7 +16,7 @@ import com.heee.fridgetube.ui.home.VideoListAdapter
 
 class LibraryFragment : Fragment() {
 
-    private lateinit var viewModel: LibraryViewModel
+    private val viewModel: LibraryViewModel by viewModels()
     private lateinit var binding: FragmentLibraryBinding
 
     override fun onCreateView(
@@ -26,10 +27,8 @@ class LibraryFragment : Fragment() {
         return binding.root
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-        viewModel = ViewModelProvider(this).get(LibraryViewModel::class.java)
-
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         binding.rvLibrary.layoutManager = LinearLayoutManager(context)
         val adapter = VideoListAdapter(object : VideoListAdapter.OnItemClickListener {
 
@@ -46,7 +45,6 @@ class LibraryFragment : Fragment() {
         }
 
         viewModel.getLibrary()
-
     }
 
 }

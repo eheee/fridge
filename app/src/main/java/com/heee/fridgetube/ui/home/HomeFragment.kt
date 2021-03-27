@@ -26,7 +26,7 @@ class HomeFragment : Fragment() {
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
 
-        binding.rvCounterTop.setHasFixedSize(true)  // Let RecyclerView know the layout of RecyclerView has always same size.
+        binding.rvCounterTop.setHasFixedSize(true)
         binding.rvCounterTop.layoutManager = LinearLayoutManager(requireContext())
 
         val adapter = VideoListAdapter(object : VideoListAdapter.OnItemClickListener{

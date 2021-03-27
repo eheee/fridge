@@ -31,7 +31,7 @@ class VideoListAdapter(
             itemClickListener.onItemClicked(counterTop)
         }
 
-        holder.binding.ivThumbnail.load(YOUTUBE_IMG_URI + counterTop.recipe.videoId + HIGH_QUALITY_IMG)    //TODO Fill the imageView or Use 'mqdefault.jpg' support 16:9 size.
+        holder.binding.ivThumbnail.load(YOUTUBE_IMG_URI + counterTop.recipe.videoId + HIGH_QUALITY_IMG)
         {
             scale(Scale.FILL)
         }

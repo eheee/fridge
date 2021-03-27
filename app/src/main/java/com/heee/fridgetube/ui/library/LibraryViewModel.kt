@@ -32,7 +32,6 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
         val itemRecipeCrossDao = db.itemRecipeCrossDao()
         viewModelScope.launch {
             val videoIds = libraryDao.getLibraries().map { it.videoId }
-            Log.d(TAG, videoIds.toString())
 
             // TODO Fetch fridge data from ViewModel.
             val fridge = cabinetAndItemDao.getCabinetAndItem().map { it.item.id }
