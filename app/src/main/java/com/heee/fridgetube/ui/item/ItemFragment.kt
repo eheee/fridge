@@ -48,7 +48,7 @@ class ItemFragment : Fragment() {
             for(item in it) {
                 when(item.category) {
                     Item.Category.MEAT -> dropDownViewList.addItem(item)
-                    Item.Category.SOURCE_SEASONING_OIL -> dropDownViewList2.addItem(item)
+                    Item.Category.LIQUID_SEASONING -> dropDownViewList2.addItem(item)
                 }
             }
         }
