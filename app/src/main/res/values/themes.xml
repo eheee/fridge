@@ -19,18 +19,21 @@
     <style name="SpoqaNotoNeoTextViewStyle" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textSize">@dimen/default_font_size</item>
         <item name="android:fontFamily">@font/spoqa_ha_sans_neo_bold_family</item>
+        <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/spoqa_ha_sans_neo_regular_family</item> <!--Support library under 26 -->
     </style>
 
     <style name="SpoqaNotoNeoButtonStyle" parent="@style/Widget.MaterialComponents.Button">
         <item name="android:textSize">@dimen/default_font_size</item>
         <item name="android:fontFamily">@font/spoqa_ha_sans_neo_regular_family</item>
+        <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/spoqa_ha_sans_neo_regular_family</item>
     </style>
 
     <style name="SpoqaNotoNeoBoldTextViewStyle" parent="@style/Widget.MaterialComponents.TextView">
         <item name="android:textSize">@dimen/default_font_size</item>
         <item name="android:fontFamily">@font/spoqa_ha_sans_neo_bold_family</item>
+        <item name="android:textColor">@color/black</item>
         <item name="fontFamily">@font/spoqa_ha_sans_neo_bold_family</item>
     </style>
 </resources>

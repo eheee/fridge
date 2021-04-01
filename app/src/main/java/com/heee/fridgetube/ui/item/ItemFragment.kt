@@ -7,12 +7,11 @@ import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.heee.fridgetube.R
 import com.heee.fridgetube.data.entity.Item
 import com.heee.fridgetube.databinding.FragmentItemBinding
+import com.heee.fridgetube.ui.utils.DropDownView
 
 class ItemFragment : Fragment() {
 
@@ -22,7 +21,7 @@ class ItemFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentItemBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -32,19 +31,26 @@ class ItemFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val adapter = ItemsAdapter()
-        adapter.onItemClickListener = object: ItemsAdapter.OnItemClickListener{
-            override fun setItemClickListenr(item: Item) {
+        val onItemClickListener = object : DropDownView.OnItemClickListener {
+            override fun onClick(item: Item) {
                 val bundle = bundleOf("id" to item.id)
                 findNavController().navigate(R.id.navigation_fridge, bundle)
             }
         }
 
-        binding.rvItems.layoutManager = LinearLayoutManager(context)
-        binding.rvItems.adapter = adapter
+        val dropDownViewList: DropDownView = binding.dropDownMeat
+        dropDownViewList.itemClickListener = onItemClickListener
 
-        viewModel.items.observe(viewLifecycleOwner, Observer {
-            adapter.setItemList(it)
-        })
+        val dropDownViewList2: DropDownView = binding.dropDownSeasoning
+        dropDownViewList2.itemClickListener = onItemClickListener
+
+        viewModel.items.observe(viewLifecycleOwner) {
+            for(item in it) {
+                when(item.category) {
+                    Item.Category.MEAT -> dropDownViewList.addItem(item)
+                    Item.Category.SOURCE_SEASONING_OIL -> dropDownViewList2.addItem(item)
+                }
+            }
+        }
     }
 }
