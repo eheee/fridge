@@ -30,87 +30,57 @@
             tools:src="@tools:sample/backgrounds/scenic" />
 
         <TextView
-            android:id="@+id/tv_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/cv_list_item_margin_top"
-            android:layout_marginLeft="@dimen/cv_list_item_margin_left"
-            android:backgroundTint="@color/deep_green"
-            android:padding="@dimen/tag_padding"
-            android:text="@string/all_items_in_fridge"
-            android:textColor="@color/white"
-            android:textSize="@dimen/tag_font_size"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
-            tools:textColor="@color/black" />
-
-        <TextView
             android:id="@+id/tv_video_title"
             style="@style/SpoqaNotoNeoBoldTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginLeft="@dimen/item_margin"
+            android:layout_marginTop="15dp"
             android:textSize="@dimen/list_item_title_font_size"
-            app:layout_constraintStart_toStartOf="@id/tv_tag"
-            app:layout_constraintTop_toBottomOf="@id/tv_tag"
+            app:layout_constraintStart_toStartOf="@id/iv_thumbnail"
+            app:layout_constraintTop_toBottomOf="@id/iv_thumbnail"
             tools:text="소세지 야채 볶음" />
 
-        <TextView
-            android:id="@+id/tv_inFridge"
-            style="@style/SpoqaNotoNeoBoldTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/items_in_fridge"
+        <ImageView
+            android:id="@+id/iv_item_fridge_icon"
+            android:layout_width="20dp"
+            android:layout_height="17dp"
+            android:src="@drawable/ic_baseline_kitchen_black_24"
             app:layout_constraintStart_toStartOf="@+id/tv_video_title"
             app:layout_constraintTop_toTopOf="@+id/tv_item_in_fridge" />
 
         <TextView
             android:id="@+id/tv_item_in_fridge"
+            style="@style/SpoqaNotoNeoBoldTextViewStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            style="@style/SpoqaNotoNeoBoldTextViewStyle"
-            android:layout_marginLeft="@dimen/items_margin_left"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="@dimen/item_margin"
             android:layout_marginTop="8dp"
-            android:lineSpacingExtra="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/btn_add_library"
-            app:layout_constraintStart_toEndOf="@+id/tv_inFridge"
+            android:lineSpacingExtra="@dimen/items_line_spacing"
+            app:layout_constraintEnd_toEndOf="@+id/iv_thumbnail"
+            app:layout_constraintStart_toEndOf="@+id/iv_item_fridge_icon"
             app:layout_constraintTop_toBottomOf="@+id/tv_video_title"
             tools:text="감자, 고구마, 소세지, 김, 김치, 수박, 메론, 바나나, 굴, 군고구마, 소주" />
 
-        <TextView
-            android:id="@+id/tv_not_inFridge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/items_not_in_fridge"
-            app:layout_constraintStart_toStartOf="@+id/tv_inFridge"
-            app:layout_constraintTop_toTopOf="@+id/tv_item_not_in_fridge" />
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="16dp"
+            android:src="@drawable/ic_baseline_not_interested_24"
+            app:layout_constraintStart_toStartOf="@+id/tv_video_title"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_not_in_fridge"
+            />
 
         <TextView
             android:id="@+id/tv_item_not_in_fridge"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:lineSpacingExtra="4dp"
+            android:lineSpacingExtra="@dimen/items_line_spacing"
             app:layout_constraintEnd_toEndOf="@+id/tv_item_in_fridge"
             app:layout_constraintStart_toStartOf="@+id/tv_item_in_fridge"
             app:layout_constraintTop_toBottomOf="@+id/tv_item_in_fridge"
             tools:text="김, 미역" />
-
-        <Button
-            android:id="@+id/btn_add_library"
-            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginRight="15dp"
-            android:insetTop="0dp"
-            android:insetRight="-10dp"
-            android:insetBottom="0dp"
-            android:minWidth="0dp"
-            android:minHeight="0dp"
-            app:icon="@drawable/ic_baseline_video_library_24_black"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_thumbnail" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

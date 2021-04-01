@@ -20,8 +20,6 @@ class VideoListAdapter(
         val binding =
             RecyclerViewRecipeBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 
-        binding.tvTag.toRoundedShape()
-
         return ViewHolder(binding)
     }
 
