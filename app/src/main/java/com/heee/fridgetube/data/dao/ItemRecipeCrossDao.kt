@@ -14,7 +14,7 @@ interface ItemRecipeCrossDao {
     suspend fun getItemWithRecipes(): List<ItemWithRecipes>
 
     @Transaction
-    @Query("SELECT * FROM Item WHERE id IN (:itemIds)")
+    @Query("SELECT * FROM Item WHERE id IN (:itemIds) AND notImportant = 0")
     suspend fun getItemWithRecipes(itemIds: List<Long>): List<ItemWithRecipes>
 
     @Transaction
