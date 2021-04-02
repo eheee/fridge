@@ -13,18 +13,22 @@ data class Item(
     val id: Long,
     val name: String,
     val category: Category = Category.UNDEFINED,
-    val isSpecial: Boolean = false
+    val notImportant: Boolean = false
 ) : Parcelable {
 
     enum class Category {
         UNDEFINED,
         MEAT,
         HAM_CAN_EGG,
-        VEGETABLE,
+        LEAF_ONION,
+        MUSHROOM_ROOT,
+        PEPPER_PUMPKIN,
         FISH_SEAFOOD,
-        FRUIT_NUT_BEAN,
+        NUT_BEAN,
         KIMCHI_MILK,
-        SOURCE_SEASONING_OIL,
+        LIQUID_SEASONING,
+        SOLID_SEASONING,
+        SOURCE_OIL,
         NUDDLE_RICE
     }
 

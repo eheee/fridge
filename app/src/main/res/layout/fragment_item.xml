@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="10dp">
@@ -14,86 +13,86 @@
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_meat"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_meat"
-            app:text="고기(돼지, 닭)"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_meat" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_ham"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_sausage"
-            app:text="가공육 · 통조림 · 계란"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_ham" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_leaf"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_leaf"
-            app:text="잎채소(상추, 배추) · 줄기(대파, 마늘)"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_leaf" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_mushroom"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_mushroom"
-            app:text="뿌리(고구마, 당근) · 버섯"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_mushroom" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_pumpkin"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_pumpkin"
-            app:text="열매(고추, 애호박)"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_pumpkin" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_fish"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_fish"
-            app:text="수산 · 해산 · 건어"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_fish" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_bean"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_bean"
-            app:text="콩 · 깨 · 두부"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_bean" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
-            android:id="@+id/drop_down_cheeze"
+            android:id="@+id/drop_down_milk"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_cheeze"
-            app:text="김치 · 유제품 · 완제품"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_milk" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_seasoning"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_bottle"
-            app:text="액체 조미료(식초, 간장)"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_seasoning" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_jar"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_jar"
-            app:text="고체 조미료(소금, 후추) · 장"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_jar" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
             android:id="@+id/drop_down_oil"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_source"
-            app:text="소스 · 오일"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_oil" />
 
         <com.heee.fridgetube.ui.utils.DropDownView
-            android:id="@+id/drop_down_bread"
+            android:id="@+id/drop_down_nuddle"
             android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:image="@drawable/ic_bread"
-            app:text="쌀 · 빵 · 면"
-            android:layout_height="wrap_content" />
+            app:text="@string/drop_down_nuddle" />
 
     </LinearLayout>
 </ScrollView>

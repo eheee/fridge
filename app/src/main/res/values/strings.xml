@@ -5,10 +5,18 @@
     <string name="title_fridge">냉장고</string>
     <string name="title_memo">장보기메모</string>
 
-    <!--  Home  -->
-    <string name="item_selection_complete">선택 완료</string>
-    <string name="items_in_fridge">있는 재료  </string>
-    <string name="items_not_in_fridge">없는 재료  </string>
-    <string name="all_items_in_fridge">당장 가능</string>
-    <string name="to_library">보관함</string>
+    <!-- 재료 -->
+    <string name="drop_down_meat">고기(돼지, 닭)</string>
+    <string name="drop_down_ham">가공육 · 통조림 · 계란</string>
+    <string name="drop_down_leaf">잎채소(상추, 배추) · 줄기(대파, 마늘)</string>
+    <string name="drop_down_mushroom">뿌리(고구마, 당근) · 버섯</string>
+    <string name="drop_down_pumpkin">열매(고추, 애호박)</string>
+    <string name="drop_down_fish">수산 · 해산 · 건어</string>
+    <string name="drop_down_bean">콩 · 깨 · 두부</string>
+    <string name="drop_down_milk">김치 · 유제품 · 완제품</string>
+    <string name="drop_down_seasoning">액체 조미료(식초, 간장)</string>
+    <string name="drop_down_jar">고체 조미료(소금, 후추) · 장</string>
+    <string name="drop_down_oil">소스 · 오일</string>
+    <string name="drop_down_nuddle">쌀 · 빵 · 면</string>
+
 </resources>

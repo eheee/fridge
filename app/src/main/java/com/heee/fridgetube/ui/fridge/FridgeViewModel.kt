@@ -38,6 +38,14 @@ class FridgeViewModel(application: Application) : AndroidViewModel(application) 
         }
     }
 
+    fun deleteCabinet(cabinet: Cabinet) {
+        val dao = db.cabinetDao()
+        viewModelScope.launch {
+            dao.delete(cabinet)
+        }
+        fetchCabinetAndItem()
+    }
+
     companion object {
         const val TAG = "FridgeViewModel"
     }

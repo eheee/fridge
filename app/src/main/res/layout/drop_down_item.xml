@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -9,7 +8,9 @@
         android:id="@+id/tv_drop_down_item_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="20dp"
-        tools:text = "text" />
+        android:background="@color/light_grey"
+        android:gravity="center"
+        android:paddingVertical="15dp"
+        tools:text="text" />
 
 </LinearLayout>
