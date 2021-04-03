@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">FridgeTube</string>
-    <string name="title_home">홈</string>
+    <string name="title_home">레시피</string>
     <string name="title_library">보관함</string>
     <string name="title_fridge">냉장고</string>
-    <string name="title_memo">장보기메모</string>
+    <string name="title_memo">장보기 메모</string>
 
     <!-- 재료 -->
     <string name="drop_down_meat">고기(돼지, 닭)</string>
