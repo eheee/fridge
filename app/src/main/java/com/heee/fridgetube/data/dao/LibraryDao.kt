@@ -6,9 +6,7 @@ import androidx.room.Query
 import com.heee.fridgetube.data.entity.Library
 
 @Dao
-interface LibraryDao: BaseDao<Library> {
-
-    // TODO QLiteConstraintException: UNIQUE constraint failed: Library.videoId
+interface LibraryDao : BaseDao<Library> {
 
     @Query("SELECT * FROM Library ORDER BY date ASC")
     suspend fun getLibraries(): List<Library>

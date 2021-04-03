@@ -1,6 +1,5 @@
 package com.heee.fridgetube.ui.library
 
-import androidx.lifecycle.ViewModelProvider
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -44,7 +43,7 @@ class LibraryFragment : Fragment() {
             adapter.setRecipes(it)
         }
 
-        viewModel.getLibrary()
+        viewModel.fetchLibrary()
     }
 
 }
