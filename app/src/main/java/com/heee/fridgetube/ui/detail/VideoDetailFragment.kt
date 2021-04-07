@@ -4,13 +4,16 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
+import android.widget.Button
+import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.google.android.material.snackbar.Snackbar
 import com.heee.fridgetube.R
+import com.heee.fridgetube.data.CounterTop
 import com.heee.fridgetube.data.entity.Library
 import com.heee.fridgetube.data.entity.Memo
-import com.heee.fridgetube.data.CounterTop
 import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
 import com.heee.fridgetube.ui.library.LibraryViewModel
 import com.heee.fridgetube.ui.memo.MemoViewModel
@@ -27,7 +30,7 @@ class VideoDetailFragment : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentVideoDetailBinding.inflate(inflater, container, false)
         return binding.root
@@ -39,19 +42,33 @@ class VideoDetailFragment : Fragment() {
         val inFridge = counterTop.inFridge.map {
             it.name
         }
-        binding.detailVideoTitle.text = counterTop.recipe.name
-        binding.tvDetailItemInFridge.text = inFridge.toString()
-
-        for(item in counterTop.notInFridge) {
-            val textView = TextView(context)
-            textView.text = item.name
-            textView.setOnClickListener {
-                memoViewModel.addMemo(Memo(comment = item.name))
-            }
-            binding.root.addView(textView)
+        binding.tvVideoTitle.text = counterTop.recipe.name
+        if (counterTop.inFridge.isNotEmpty()) {
+            binding.tvItemInFridge.text = counterTop.inFridge.asSequence()
+                .map { it.name }
+                .joinToString(", ")
         }
 
-        val youtubePlayerView: YouTubePlayerView = view.findViewById<YouTubePlayerView>(R.id.detail_youtube_player_view)
+        for (item in counterTop.notInFridge) {
+            val btn = Button(requireContext())
+            btn.text = item.name
+            val layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.MATCH_PARENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply { setMargins(2, 2, 2, 2) }
+
+            btn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
+            btn.isClickable = true
+            btn.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
+            btn.layoutParams = layoutParams
+            btn.setOnClickListener {
+                memoViewModel.addMemo(Memo(comment = item.name))
+            }
+            binding.llNotInFridgeContainer.addView(btn)
+        }
+
+        val youtubePlayerView: YouTubePlayerView =
+            view.findViewById<YouTubePlayerView>(R.id.detail_youtube_player_view)
         youtubePlayerView.addYouTubePlayerListener(object : AbstractYouTubePlayerListener() {
             override fun onReady(youtubePlayer: YouTubePlayer) { // Called when the player is ready to play video
                 youtubePlayer.loadVideo(counterTop.recipe.videoId, 0F)
@@ -60,6 +77,9 @@ class VideoDetailFragment : Fragment() {
 
         binding.btnWatchLater.setOnClickListener {
             libraryVIewMemo.addLibrary(Library(counterTop.recipe.videoId))
+            Snackbar.make(binding.llContainer,
+                "보관함에 저장되었습니다.",
+                Snackbar.LENGTH_LONG).show()
         }
     }
 
