@@ -22,6 +22,13 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
         }
     }
 
+    fun deleteLibrary(videoId: String) {
+        viewModelScope.launch {
+            libraryRepository.deleteLibrary(videoId)
+        }
+    }
+
+
     fun fetchLibrary() {
         viewModelScope.launch {
             _counterTopList.value = libraryRepository.fetchLibrary()

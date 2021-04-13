@@ -1,12 +1,11 @@
 package com.heee.fridgetube.ui.detail
 
 import android.os.Bundle
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
+import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
@@ -26,7 +25,7 @@ class VideoDetailFragment : Fragment() {
 
     private val viewModel: VideoDetailViewModel by viewModels()
     private val memoViewModel: MemoViewModel by viewModels()
-    private val libraryVIewMemo: LibraryViewModel by viewModels()
+    private val libraryViewMemo: LibraryViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,21 +49,53 @@ class VideoDetailFragment : Fragment() {
         }
 
         for (item in counterTop.notInFridge) {
-            val btn = Button(requireContext())
-            btn.text = item.name
-            val layoutParams = LinearLayout.LayoutParams(
+
+            val llItem = LinearLayout(requireContext()).apply {
+                orientation = LinearLayout.HORIZONTAL
+                background = requireContext().getDrawable(R.drawable.shape_square_item_container)
+            }
+
+
+            val tvItemName = TextView(requireContext())
+            tvItemName.text = item.name
+            tvItemName.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                weight = 1.0f
+                gravity = Gravity.START or Gravity.CENTER_VERTICAL
+            }
+
+
+            val ivAddMemo = ImageView(requireContext())
+            ivAddMemo.setImageDrawable(requireContext().getDrawable(R.drawable.ic_sticky_note_2_black_24dp))
+            ivAddMemo.layoutParams = LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT
+            ).apply {
+                weight = 0.1f
+                gravity = Gravity.END or Gravity.CENTER_VERTICAL
+            }
+            ivAddMemo.setOnClickListener {
+                memoViewModel.addMemo(Memo(comment = item.name))
+                ivAddMemo.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_check_24))
+                ivAddMemo.setOnClickListener {  }
+                Snackbar.make(binding.llContainer,
+                    "${item.name} 을(를) 장보기 메모에 추가했습니다.",
+                    Snackbar.LENGTH_LONG).show()
+            }
+
+
+            llItem.layoutParams = LinearLayout.LayoutParams(
                 LinearLayout.LayoutParams.MATCH_PARENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT
             ).apply { setMargins(2, 2, 2, 2) }
 
-            btn.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.white))
-            btn.isClickable = true
-            btn.textAlignment = View.TEXT_ALIGNMENT_TEXT_START
-            btn.layoutParams = layoutParams
-            btn.setOnClickListener {
-                memoViewModel.addMemo(Memo(comment = item.name))
-            }
-            binding.llNotInFridgeContainer.addView(btn)
+            llItem.addView(tvItemName)
+            llItem.addView(ivAddMemo)
+
+            binding.llNotInFridgeContainer.addView(llItem)
+
         }
 
         val youtubePlayerView: YouTubePlayerView =
@@ -76,10 +107,21 @@ class VideoDetailFragment : Fragment() {
         })
 
         binding.btnWatchLater.setOnClickListener {
-            libraryVIewMemo.addLibrary(Library(counterTop.recipe.videoId))
-            Snackbar.make(binding.llContainer,
-                "보관함에 저장되었습니다.",
-                Snackbar.LENGTH_LONG).show()
+            if (viewModel.isWatchLater) {
+                libraryViewMemo.deleteLibrary(counterTop.recipe.videoId)
+                binding.btnWatchLater.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_video_library_24_black))
+                Snackbar.make(binding.llContainer,
+                    "보관함에서 제거되었습니다.",
+                    Snackbar.LENGTH_LONG).show()
+                viewModel.isWatchLater = false
+            }else {
+                libraryViewMemo.addLibrary(Library(counterTop.recipe.videoId))
+                binding.btnWatchLater.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_library_add_check_24))
+                Snackbar.make(binding.llContainer,
+                    "보관함에 저장되었습니다.",
+                    Snackbar.LENGTH_LONG).show()
+                viewModel.isWatchLater = true
+            }
         }
     }
 

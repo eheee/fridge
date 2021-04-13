@@ -75,26 +75,37 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_video_title"
                 tools:text="감자, 고구마, 소세지, 김, 김치, 수박, 메론, 바나나, 굴, 군고구마, 소주" />
 
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/shape_square_item_container"
-                android:gravity="center"
-                android:padding="5dp"
-                android:text="없는 재료"
-                app:layout_constraintEnd_toEndOf="@+id/tv_item_in_fridge"
+
+            <ImageView
+                android:id="@+id/iv_item_no_fridge_icon"
+                android:layout_width="20dp"
+                android:layout_height="17dp"
+                android:src="@drawable/ic_baseline_not_interested_24"
                 app:layout_constraintStart_toStartOf="@+id/iv_item_fridge_icon"
+                app:layout_constraintTop_toTopOf="@+id/tv_no_fridge_tip" />
+
+            <TextView
+                android:id="@+id/tv_no_fridge_tip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="tip. 메모 버튼으로 장보기 메모에 쉽게 추가하세요."
+                android:textColor="@android:color/darker_gray"
+                android:textStyle="bold"
+                android:textSize="14sp"
+                app:layout_constraintStart_toEndOf="@+id/iv_item_fridge_icon"
+                app:layout_constraintStart_toStartOf="@+id/tv_item_in_fridge"
                 app:layout_constraintTop_toBottomOf="@+id/tv_item_in_fridge" />
+
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedScrollView"
                 android:layout_width="0dp"
                 android:layout_height="220dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_item_in_fridge"
                 app:layout_constraintStart_toStartOf="@+id/iv_item_fridge_icon"
-                app:layout_constraintTop_toBottomOf="@+id/textView">
+                app:layout_constraintTop_toBottomOf="@+id/iv_item_no_fridge_icon">
 
                 <LinearLayout
                     android:id="@+id/ll_notInFridge_container"
@@ -102,8 +113,8 @@
                     android:layout_height="match_parent"
                     android:nestedScrollingEnabled="true"
                     android:orientation="vertical">
-
                 </LinearLayout>
+
             </androidx.core.widget.NestedScrollView>
 
         </androidx.constraintlayout.widget.ConstraintLayout>

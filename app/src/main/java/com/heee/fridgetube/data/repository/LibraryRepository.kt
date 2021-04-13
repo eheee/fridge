@@ -36,6 +36,11 @@ class LibraryRepository(context: Context) : BaseRepository(context) {
         return counterTopList
     }
 
+    suspend fun deleteLibrary(videoId: String) {
+        val libraryDao = db.libraryDao()
+        libraryDao.deleteByVideoId(videoId)
+    }
+
     companion object {
         const val TAG = "LibraryRepository"
     }
