@@ -1,12 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tv_memo_comment"
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cv_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="8dp"
+        android:layout_marginVertical="15dp"
+        android:minHeight="50dp"
+        app:cardCornerRadius="@dimen/cv_corner_radius"
+        app:cardElevation="@dimen/cv_elevation">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:padding="10dp"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/tv_memo_date"
+                android:layout_width="wrap_content"
+                style="@style/SpoqaNotoNeoBoldTextViewStyle"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="2021-05-21" />
+
+            <ImageView
+                android:id="@+id/iv_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_clear_black_24dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/ll_memos"
+                android:layout_width="match_parent"
+                android:paddingTop="10dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_memo_date"
+                android:orientation="vertical" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 </LinearLayout>

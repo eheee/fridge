@@ -9,6 +9,6 @@ import com.heee.fridgetube.data.entity.Memo
 @Dao
 interface MemoDao: BaseDao<Memo> {
 
-    @Query("SELECT * FROM Memo")
+    @Query("SELECT * FROM Memo ORDER BY inputTime DESC")
     suspend fun getMemos(): List<Memo>
 }

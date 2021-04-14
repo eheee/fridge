@@ -5,19 +5,22 @@ import androidx.lifecycle.*
 import com.heee.fridgetube.data.entity.Memo
 import com.heee.fridgetube.data.room.AppDatabase
 import kotlinx.coroutines.launch
+import java.text.SimpleDateFormat
+import java.util.*
 
 class MemoViewModel(application: Application) : AndroidViewModel(application) {
     private val context = application.applicationContext
     private val db = AppDatabase.getAppDatabase(context)
 
-    private val _memo = MutableLiveData<List<Memo>>()
-    val memo: LiveData<List<Memo>>
-        get() = _memo
+    private val _memos = MutableLiveData<Map<String, List<Memo>>>()
+    val memos: LiveData<Map<String, List<Memo>>>
+        get() = _memos
 
     fun getMemos() {
         val memoDao = db.memoDao()
         viewModelScope.launch {
-            _memo.value = memoDao.getMemos()
+            val memos = memoDao.getMemos()
+            _memos.value = memos.groupBy { it.inputDate }
         }
     }
 
@@ -25,16 +28,25 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         val memoDao = db.memoDao()
         viewModelScope.launch {
             memoDao.insert(memo)
+
+            //getMemos for sync
+            val memos = memoDao.getMemos()
+            _memos.value = memos.groupBy { it.inputDate }
         }
-        getMemos()
     }
 
-    fun deleteMemo(memo: Memo) {
+    fun deleteMemo(memos: List<Memo>) {
         val memoDao = db.memoDao()
         viewModelScope.launch {
-            memoDao.delete(memo)
+            for(memo in memos){
+                memoDao.delete(memo)
+            }
+
+            //getMemos for sync
+            val memos = memoDao.getMemos()
+            _memos.value = memos.groupBy { it.inputDate }
         }
-        getMemos()
+
     }
 
 }

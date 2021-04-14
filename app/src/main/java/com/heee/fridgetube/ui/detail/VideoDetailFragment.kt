@@ -80,9 +80,6 @@ class VideoDetailFragment : Fragment() {
                 memoViewModel.addMemo(Memo(comment = item.name))
                 ivAddMemo.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_check_24))
                 ivAddMemo.setOnClickListener {  }
-                Snackbar.make(binding.llContainer,
-                    "${item.name} 을(를) 장보기 메모에 추가했습니다.",
-                    Snackbar.LENGTH_LONG).show()
             }
 
 

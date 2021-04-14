@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import com.heee.fridgetube.data.entity.Memo
 import com.heee.fridgetube.databinding.FragmentMemoBinding
 
@@ -30,13 +31,16 @@ class MemoFragment : Fragment() {
         binding.rvMemo.layoutManager = LinearLayoutManager(context)
         val adapter = MemoAdapter()
         adapter.onItemClinkListener = object : MemoAdapter.OnItemClinkListener {
-            override fun itemClick(memo: Memo) {
-                viewModel.deleteMemo(memo)
+            override fun itemClick(memos: List<Memo>) {
+                viewModel.deleteMemo(memos)
+                Snackbar.make(binding.cslMemoContainer,
+                    "메모가 삭제되었습니다.",
+                    Snackbar.LENGTH_LONG).show()
             }
         }
         binding.rvMemo.adapter = adapter
 
-        viewModel.memo.observe(viewLifecycleOwner) {
+        viewModel.memos.observe(viewLifecycleOwner) {
             adapter.setMemoList(it)
         }
 
