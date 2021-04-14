@@ -7,20 +7,24 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.snackbar.Snackbar
+import com.heee.fridgetube.R
 import com.heee.fridgetube.data.entity.Memo
 import com.heee.fridgetube.databinding.FragmentMemoBinding
 
 class MemoFragment : Fragment() {
 
     private val viewModel: MemoViewModel by viewModels()
+    lateinit var bottomNavView: BottomNavigationView
 
     private lateinit var binding: FragmentMemoBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
+        bottomNavView = activity?.findViewById(R.id.nav_view)!!
         binding = FragmentMemoBinding.inflate(inflater, container, false)
         return binding.root
     }
@@ -33,9 +37,11 @@ class MemoFragment : Fragment() {
         adapter.onItemClinkListener = object : MemoAdapter.OnItemClinkListener {
             override fun itemClick(memos: List<Memo>) {
                 viewModel.deleteMemo(memos)
-                Snackbar.make(binding.cslMemoContainer,
+                Snackbar.make(binding.rvMemo,
                     "메모가 삭제되었습니다.",
-                    Snackbar.LENGTH_LONG).show()
+                    Snackbar.LENGTH_LONG)
+                    .setAnchorView(bottomNavView)
+                    .show()
             }
         }
         binding.rvMemo.adapter = adapter
