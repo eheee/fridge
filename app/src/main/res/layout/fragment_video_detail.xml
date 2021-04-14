@@ -21,7 +21,6 @@
         android:layout_marginHorizontal="8dp"
         android:layout_marginTop="15dp"
         android:layout_marginBottom="10dp"
-        android:minHeight="300dp"
         app:cardCornerRadius="@dimen/cv_corner_radius"
         app:cardElevation="@dimen/cv_elevation"
         app:contentPaddingBottom="@dimen/cv_padding_bottom">
@@ -102,7 +101,7 @@
                 android:id="@+id/nestedScrollView"
                 android:layout_width="0dp"
                 android:layout_height="220dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginVertical="10dp"
                 app:layout_constraintEnd_toEndOf="@+id/tv_item_in_fridge"
                 app:layout_constraintStart_toStartOf="@+id/iv_item_fridge_icon"
                 app:layout_constraintTop_toBottomOf="@+id/iv_item_no_fridge_icon">
