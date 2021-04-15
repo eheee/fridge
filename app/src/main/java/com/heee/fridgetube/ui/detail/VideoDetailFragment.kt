@@ -6,21 +6,24 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.google.android.material.snackbar.Snackbar
+import com.heee.fridgetube.MainActivity
 import com.heee.fridgetube.R
 import com.heee.fridgetube.data.CounterTop
 import com.heee.fridgetube.data.entity.Library
 import com.heee.fridgetube.data.entity.Memo
 import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
+import com.heee.fridgetube.ui.BaseFragment
 import com.heee.fridgetube.ui.library.LibraryViewModel
 import com.heee.fridgetube.ui.memo.MemoViewModel
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
 
-class VideoDetailFragment : Fragment() {
+class VideoDetailFragment : BaseFragment() {
     lateinit var binding: FragmentVideoDetailBinding
 
     private val viewModel: VideoDetailViewModel by viewModels()
@@ -32,6 +35,16 @@ class VideoDetailFragment : Fragment() {
         savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentVideoDetailBinding.inflate(inflater, container, false)
+
+        // Handle background thread memory leak when it's pressed just after starting to show a video.
+        val callback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                binding.detailYoutubePlayerView.release()
+                navigateUp()    //original back pressed
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback);
+
         return binding.root
     }
 
