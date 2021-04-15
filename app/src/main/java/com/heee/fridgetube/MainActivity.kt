@@ -1,13 +1,10 @@
 package com.heee.fridgetube
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.heee.fridgetube.databinding.ActivityMainBinding
 import com.heee.fridgetube.ui.utils.visible
@@ -34,7 +31,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         val appBarConfiguration = AppBarConfiguration(setOf(
-            R.id.navigation_home, R.id.navigation_library, R.id.navigation_fridge, R.id.navigation_memo))
+            R.id.navigation_home,
+            R.id.navigation_library,
+            R.id.navigation_fridge,
+            R.id.navigation_memo))
         binding.toolbar.setupWithNavController(navController, appBarConfiguration)
 
         binding.navView.setupWithNavController(navController)
