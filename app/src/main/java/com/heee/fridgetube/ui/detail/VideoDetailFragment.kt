@@ -61,6 +61,7 @@ class VideoDetailFragment : BaseFragment() {
                 .joinToString(", ")
         }
 
+        // Generate views showing items not in fridge programmatically
         for (item in counterTop.notInFridge) {
 
             val llItem = LinearLayout(requireContext()).apply {
@@ -107,6 +108,15 @@ class VideoDetailFragment : BaseFragment() {
             binding.llNotInFridgeContainer.addView(llItem)
 
         }
+
+        // Bottom Padding
+        var paddingView = View(context)
+        paddingView.layoutParams = LinearLayout.LayoutParams(
+            LinearLayout.LayoutParams.MATCH_PARENT,
+            LinearLayout.LayoutParams.WRAP_CONTENT
+        ).apply { setMargins(0, 200, 0, 200) }
+        binding.llNotInFridgeContainer.addView(paddingView)
+
 
         val youtubePlayerView: YouTubePlayerView =
             view.findViewById<YouTubePlayerView>(R.id.detail_youtube_player_view)
