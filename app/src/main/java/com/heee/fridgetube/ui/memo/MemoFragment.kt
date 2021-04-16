@@ -47,6 +47,11 @@ class MemoFragment : Fragment() {
         binding.rvMemo.adapter = adapter
 
         viewModel.memos.observe(viewLifecycleOwner) {
+            if(it.size > 1){
+                binding.llMemoInstruction.visibility = View.GONE
+            }else {
+                binding.llMemoInstruction.visibility = View.VISIBLE
+            }
             adapter.setMemoList(it)
         }
 
