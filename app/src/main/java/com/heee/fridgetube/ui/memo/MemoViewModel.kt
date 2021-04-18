@@ -46,7 +46,5 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
             val memos = memoDao.getMemos()
             _memos.value = memos.groupBy { it.inputDate }
         }
-
     }
-
 }

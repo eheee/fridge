@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         binding.rvCounterTop.adapter = adapter
 
         viewModel.recipes.observe(viewLifecycleOwner) {
-            if(it.size > 1){
+            if(it.isNotEmpty()){
                 binding.llHomeInstruction.visibility = View.GONE
             }else {
                 binding.llHomeInstruction.visibility = View.VISIBLE
