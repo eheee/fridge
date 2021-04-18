@@ -10,6 +10,9 @@ interface LibraryDao : BaseDao<Library> {
     @Query("SELECT * FROM Library ORDER BY date ASC")
     suspend fun getLibraries(): List<Library>
 
+    @Query("SELECT * FROM Library WHERE videoId = :videoId")
+    suspend fun getByVideoId(videoId: String): List<Library>
+
     @Query("DELETE FROM Library WHERE videoId = :videoId")
     suspend fun deleteByVideoId(videoId: String)
 }

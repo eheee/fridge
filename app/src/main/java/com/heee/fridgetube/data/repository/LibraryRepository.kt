@@ -36,6 +36,12 @@ class LibraryRepository(context: Context) : BaseRepository(context) {
         return counterTopList
     }
 
+    suspend fun isInLibarry(videoId: String): Boolean {
+        val libraryDao = db.libraryDao()
+        val result = libraryDao.getByVideoId(videoId)
+        return result.isNotEmpty()
+    }
+
     suspend fun deleteLibrary(videoId: String) {
         val libraryDao = db.libraryDao()
         libraryDao.deleteByVideoId(videoId)

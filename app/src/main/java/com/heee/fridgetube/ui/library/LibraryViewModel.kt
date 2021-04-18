@@ -16,6 +16,10 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
     val recipes: LiveData<List<CounterTop>>
         get() = _counterTopList
 
+    private val _isInLibrary = MutableLiveData<Boolean>()
+    val isInLibrary: LiveData<Boolean>
+        get() = _isInLibrary
+
     fun addLibrary(library: Library) {
         viewModelScope.launch {
             libraryRepository.addLibrary(library)
@@ -32,6 +36,13 @@ class LibraryViewModel(application: Application) : AndroidViewModel(application)
     fun fetchLibrary() {
         viewModelScope.launch {
             _counterTopList.value = libraryRepository.fetchLibrary()
+        }
+    }
+
+
+    fun checkIfInLibrary(videoId: String) {
+        viewModelScope.launch {
+            _isInLibrary.value = libraryRepository.isInLibarry(videoId)
         }
     }
 
