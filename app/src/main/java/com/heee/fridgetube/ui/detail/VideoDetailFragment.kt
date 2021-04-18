@@ -19,6 +19,7 @@ import com.heee.fridgetube.databinding.FragmentVideoDetailBinding
 import com.heee.fridgetube.ui.BaseFragment
 import com.heee.fridgetube.ui.library.LibraryViewModel
 import com.heee.fridgetube.ui.memo.MemoViewModel
+import com.heee.fridgetube.ui.utils.enable
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.views.YouTubePlayerView
@@ -129,14 +130,17 @@ class VideoDetailFragment : BaseFragment() {
         binding.btnWatchLater.setOnClickListener {
             if (viewModel.isWatchLater) {
                 libraryViewMemo.deleteLibrary(counterTop.recipe.videoId)
-                binding.btnWatchLater.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_video_library_24_black))
+                binding.btnWatchLater.setIconResource(R.drawable.ic_baseline_video_library_24_black)
+//                binding.btnWatchLater.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_video_library_24_black))
+                binding.btnWatchLater.text = "보관함"
                 Snackbar.make(binding.llContainer,
                     "보관함에서 제거되었습니다.",
                     Snackbar.LENGTH_LONG).show()
                 viewModel.isWatchLater = false
             }else {
                 libraryViewMemo.addLibrary(Library(counterTop.recipe.videoId))
-                binding.btnWatchLater.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_library_add_check_24))
+                binding.btnWatchLater.setIconResource(R.drawable.ic_baseline_check_24_white)
+                binding.btnWatchLater.text = "보관됨"
                 Snackbar.make(binding.llContainer,
                     "보관함에 저장되었습니다.",
                     Snackbar.LENGTH_LONG).show()
