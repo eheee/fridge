@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
+            android:textSize="16sp"
             android:lineSpacingExtra="10dp"
             android:text="장 볼 재료 목록이 표시됩니다.\n레시피 영상 재생 화면에서\n간편하게 추가하세요!"
             android:textAlignment="center" />
