@@ -11,4 +11,7 @@ interface MemoDao: BaseDao<Memo> {
 
     @Query("SELECT * FROM Memo ORDER BY inputTime DESC")
     suspend fun getMemos(): List<Memo>
+
+    @Query("DELETE FROM Memo WHERE inputDate = :inputDate")
+    suspend fun deleteMemosByDate(inputDate: String)
 }

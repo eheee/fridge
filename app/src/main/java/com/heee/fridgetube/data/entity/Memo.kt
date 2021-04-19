@@ -10,12 +10,13 @@ data class Memo(
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,
     val inputTime: Long = System.currentTimeMillis(),
+    val inputDate: String = SimpleDateFormat("yyyy-MM-dd").format(Date(inputTime)),
     val comment: String
 ) {
-    var inputDate: String
-
-    init {
-        val formatter = SimpleDateFormat("yyyy-MM-dd")
-        inputDate = formatter.format(Date(inputTime))
-    }
+//    var inputDate: String
+//
+//    init {
+//        val formatter = SimpleDateFormat("yyyy-MM-dd")
+//        inputDate = formatter.format(Date(inputTime))
+//    }
 }
