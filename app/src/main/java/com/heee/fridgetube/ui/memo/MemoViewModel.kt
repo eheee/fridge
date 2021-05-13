@@ -39,10 +39,6 @@ class MemoViewModel(application: Application) : AndroidViewModel(application) {
         val memoDao = db.memoDao()
         viewModelScope.launch {
             memoDao.deleteMemosByDate(memos[0].inputDate)
-
-            //getMemos for sync
-            val memos = memoDao.getMemos()
-            _memos.value = memos.groupBy { it.inputDate }
         }
     }
 }

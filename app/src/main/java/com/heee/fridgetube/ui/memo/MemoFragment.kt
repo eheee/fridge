@@ -42,6 +42,7 @@ class MemoFragment : Fragment() {
                     Snackbar.LENGTH_LONG)
                     .setAnchorView(bottomNavView)
                     .show()
+                viewModel.getMemos()
             }
         }
         binding.rvMemo.adapter = adapter
