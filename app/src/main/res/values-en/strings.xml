@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="title_home">recipe</string>
+    <string name="title_library">library</string>
+    <string name="title_fridge">fridge</string>
+    <string name="title_memo">memo</string>
+    <string name="drop_down_meat">meat</string>
+    <string name="drop_down_ham">ham</string>
+    <string name="drop_down_leaf">leaf</string>
+    <string name="drop_down_mushroom">mushroom</string>
+    <string name="drop_down_pumpkin">pumpkin</string>
+    <string name="drop_down_fish">fish</string>
+    <string name="drop_down_bean">bean</string>
+    <string name="drop_down_milk">milk</string>
+    <string name="drop_down_seasoning">seasoning</string>
+    <string name="drop_down_jar">jar</string>
+    <string name="drop_down_oil">oil</string>
+    <string name="drop_down_nuddle">nuddle</string>
+
+</resources>
