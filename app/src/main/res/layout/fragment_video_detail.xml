@@ -89,7 +89,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="tip. 메모 버튼으로 장보기 메모에 쉽게 추가하세요."
+                android:text=""
                 android:textColor="@android:color/darker_gray"
                 android:textStyle="bold"
                 android:textSize="14sp"

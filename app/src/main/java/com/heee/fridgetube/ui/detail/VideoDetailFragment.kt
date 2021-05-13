@@ -91,7 +91,8 @@ class VideoDetailFragment : BaseFragment() {
                 weight = 0.1f
                 gravity = Gravity.END or Gravity.CENTER_VERTICAL
             }
-            ivAddMemo.setOnClickListener {
+
+            llItem.setOnClickListener {
                 memoViewModel.addMemo(Memo(comment = item.name))
                 ivAddMemo.setImageDrawable(requireContext().getDrawable(R.drawable.ic_baseline_check_24))
                 ivAddMemo.setOnClickListener { }
