@@ -3,7 +3,7 @@
 
 (짧은 시연 영상)
 
-## 사용 기술 및 라이브러리
+## ㅈㅓㄱ용 기술 및 라이브러리
 - 코틀린
 - MVVM 아키텍처
 - Room, ViewModel, ViewBinding, Lifecycle-aware components 
